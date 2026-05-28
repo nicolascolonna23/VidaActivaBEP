@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FitLife App</title>
+<title>Vida Activa</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap');
 
@@ -35,8 +35,8 @@
   .screen::-webkit-scrollbar { display: none; }
   .screen.active { display: flex; }
 
-  /* STATUS BAR */
-  .status-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 28px 0; font-size: 13px; font-weight: 600; color: var(--white); flex-shrink: 0; }
+  /* STATUS BAR - ocultada en esta UI simplificada */
+  .status-bar { display: none !important; }
   .status-icons { display: flex; gap: 6px; align-items: center; }
 
   /* STEP BREADCRUMB - muestra el paso del flujo */
@@ -331,7 +331,7 @@
     <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; padding:40px;">
       <div class="splash-logo">🏋️</div>
-      <div class="splash-title">Fit<span>Life</span></div>
+      <div class="splash-title">Vida <span>Activa</span></div>
       <div class="splash-sub">Tu gimnasio, en tu bolsillo</div>
       <div style="width:100%; margin-top:20px;">
         <button class="btn-primary" onclick="goto('auth-choice')">Ingresar a la app</button>
@@ -505,7 +505,7 @@
 
       <div style="background:rgba(255,255,255,0.04); border-radius:10px; padding:14px; margin-bottom:24px; border:1px dashed rgba(232,255,71,0.3);">
         <div style="font-size:12px; color:var(--gray); margin-bottom:6px;">📥 Asunto</div>
-        <div style="font-size:13px; color:var(--white); margin-bottom:10px;">Confirmá tu cuenta FitLife</div>
+        <div style="font-size:13px; color:var(--white); margin-bottom:10px;">Confirmá tu cuenta Vida Activa</div>
         <div style="font-size:12px; color:var(--gray);">Hacé click en el enlace del mail para verificar tu cuenta</div>
       </div>
 
@@ -761,7 +761,7 @@
       </div>
     </div>
 
-    <div class="menu-section-label">Menú de otras opciones — ¿Qué opción elegís?</div>
+    <div class="menu-section-label">¿Qué opción elegís?</div>
 
     <div class="menu-grid">
       <div class="menu-card" onclick="goto('nutrition')">
@@ -770,36 +770,34 @@
         <div class="menu-card-sub">Recomendaciones</div>
         <div class="menu-card-arrow">→</div>
       </div>
-      <div class="menu-card" onclick="goto('puntos-vida-check')">
-        <div class="menu-card-icon">⚡</div>
-        <div class="menu-card-title">Puntos Vida</div>
-        <div class="menu-card-sub">Saldo o beneficios</div>
-        <div class="menu-card-arrow">→</div>
-      </div>
-      <div class="menu-card" onclick="goto('classes')">
-        <div class="menu-card-icon">🎥</div>
-        <div class="menu-card-title">Clases</div>
-        <div class="menu-card-sub">Virtuales o presenciales</div>
-        <div class="menu-card-arrow">→</div>
-      </div>
       <div class="menu-card" onclick="goto('routines')">
         <div class="menu-card-icon">💪</div>
         <div class="menu-card-title">Rutinas</div>
         <div class="menu-card-sub">Personalizadas</div>
         <div class="menu-card-arrow">→</div>
       </div>
-      <div class="menu-card" onclick="goto('qr-bio')">
-        <div class="menu-card-icon">📱</div>
-        <div class="menu-card-title">QR de acceso</div>
-        <div class="menu-card-sub">Una vez en la sede</div>
+      <div class="menu-card" onclick="goto('puntos-vida-check')">
+        <div class="menu-card-icon">⚡</div>
+        <div class="menu-card-title">Puntos Vida</div>
+        <div class="menu-card-sub">Saldo o beneficios</div>
         <div class="menu-card-arrow">→</div>
       </div>
-      <div class="menu-card" onclick="goto('sedes')">
-        <div class="menu-card-icon">📍</div>
-        <div class="menu-card-title">Sedes</div>
-        <div class="menu-card-sub">Mapa con sedes</div>
+      <div class="menu-card" onclick="goto('subscription')">
+        <div class="menu-card-icon">🟢</div>
+        <div class="menu-card-title">Estado de suscripción</div>
+        <div class="menu-card-sub">Activa · MercadoPago · vence en 12 días</div>
         <div class="menu-card-arrow">→</div>
       </div>
+    </div>
+
+    <div style="padding:16px 24px 120px;">
+      <div style="font-size:13px; color:var(--gray); margin-bottom:8px; font-weight:700;">Videos rápidos para rutinas en casa</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <a class="btn-secondary" href="https://www.youtube.com/results?search_query=10+min+hiit+home" target="_blank">10 min HIIT — En casa (sin equipo)</a>
+        <a class="btn-secondary" href="https://www.youtube.com/results?search_query=15+min+full+body+workout+no+equipment" target="_blank">15 min Full Body — Sin equipo</a>
+        <a class="btn-secondary" href="https://www.youtube.com/results?search_query=short+strength+workout+at+home" target="_blank">Rutina rápida de fuerza — En casa</a>
+      </div>
+      <div class="gap-info" style="margin-top:10px;">Recomendado si no podés acudir al GYM</div>
     </div>
 
     <div class="bottom-nav">
@@ -1056,10 +1054,10 @@
         <div class="benefit-cost">1.500 pts</div>
       </div>
 
-      <div class="benefit-card" onclick="selectBeneficio('👕 Remera FitLife', 800)">
+      <div class="benefit-card" onclick="selectBeneficio('👕 Remera Vida Activa', 800)">
         <div class="benefit-icon-wrap">👕</div>
         <div class="benefit-info">
-          <div class="benefit-name">Remera FitLife</div>
+          <div class="benefit-name">Remera Vida Activa</div>
           <div class="benefit-desc">Talle a elección</div>
         </div>
         <div class="benefit-cost">800 pts</div>
@@ -1134,6 +1132,41 @@
       </div>
       <button class="btn-primary" onclick="goto('home')" style="margin-top:16px;">Volver al inicio</button>
       <button class="btn-secondary" onclick="goto('puntos-beneficios')">Ver más beneficios</button>
+    </div>
+  </div>
+
+  <!-- ════════════ SUSCRIPCIÓN: Ver estado de suscripción, método y vencimiento ════════════ -->
+  <div class="screen" id="screen-subscription">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="top-nav">
+      <button class="back-btn" onclick="goto('home')">←</button>
+      <div class="top-nav-title">Estado de suscripción</div>
+      <div style="width:36px;"></div>
+    </div>
+    <div class="screen-content">
+      <div class="step-title">Mi suscripción</div>
+      <div class="step-sub">Verifica el estado y los detalles de tu plan</div>
+
+      <div class="plan-card selected" style="margin-top:16px;">
+        <div class="plan-name" id="sub-plan-name">Premium</div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+          <div style="font-size:13px; color:var(--gray);">Estado</div>
+          <div style="font-weight:700; color:var(--yellow);">Activa</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+          <div style="font-size:13px; color:var(--gray);">Método de pago</div>
+          <div style="font-weight:700; color:var(--white);">Tarjeta de crédito (Visa)</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+          <div style="font-size:13px; color:var(--gray);">Vence en</div>
+          <div style="font-weight:700; color:var(--yellow);">12 días</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px; display:flex; gap:12px;">
+        <button class="btn-primary" onclick="goto('payment-method')">Renovar / Cambiar pago</button>
+        <button class="btn-secondary" onclick="showAlert('Se ha enviado un recordatorio de pago', 'success')">Recordatorio</button>
+      </div>
     </div>
   </div>
 
