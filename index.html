@@ -36,7 +36,7 @@
   .screen.active { display: flex; }
 
   /* STATUS BAR */
-  .status-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 28px 0; font-size: 13px; font-weight: 600; color: var(--white); flex-shrink: 0; }
+  .status-bar { display: none; justify-content: space-between; align-items: center; padding: 14px 28px 0; font-size: 13px; font-weight: 600; color: var(--white); flex-shrink: 0; }
   .status-icons { display: flex; gap: 6px; align-items: center; }
 
   /* STEP BREADCRUMB */
@@ -166,13 +166,13 @@
   @keyframes spin { to { transform: rotate(360deg); } }
 
   /* HOME */
-  #screen-home { padding-bottom: 90px; }
-  .home-header { padding: 20px 24px 24px; background: linear-gradient(180deg, var(--green-mid) 0%, var(--green) 100%); position: relative; overflow: hidden; }
+  #screen-home { padding-bottom: 120px; }
+  .home-header { padding: 32px 24px 28px; background: linear-gradient(180deg, var(--green-mid) 0%, var(--green) 100%); position: relative; overflow: hidden; margin-bottom: 8px; }
   .home-header::after { content: ''; position: absolute; bottom: -30px; right: -20px; width: 120px; height: 120px; background: var(--yellow); opacity: 0.06; border-radius: 50%; }
   .home-greeting { color: var(--gray); font-size: 14px; margin-bottom: 4px; }
   .home-name { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: var(--white); margin-bottom: 20px; }
   .home-name span { color: var(--yellow); }
-  .home-card { background: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-dark) 100%); border-radius: var(--radius); padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+  .home-card { background: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-dark) 100%); border-radius: 20px; padding: 22px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 8px 24px rgba(232,255,71,0.15); }
   .home-card-label { font-size: 12px; font-weight: 600; color: var(--green); opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; }
   .home-card-value { font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: var(--green); }
   .home-card-sub { font-size: 13px; color: var(--green); opacity: 0.6; }
@@ -184,7 +184,7 @@
   }
   .menu-section-label::before { content: ''; width: 14px; height: 2px; background: var(--yellow); }
 
-  .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 24px; }
+  .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px 24px 0; }
   .menu-card { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 20px; cursor: pointer; transition: var(--transition); position: relative; overflow: hidden; }
   .menu-card:hover { border-color: var(--yellow); transform: translateY(-2px); background: rgba(232,255,71,0.05); }
   .menu-card-icon { font-size: 28px; margin-bottom: 10px; }
@@ -328,6 +328,40 @@
 
   .text-yellow { color: var(--yellow); }
   .gap-info { font-size: 13px; color: var(--gray); text-align: center; margin-top: 12px; }
+
+  /* YOUTUBE COMPACT LINKS */
+  .yt-section-label { font-size: 11px; font-weight: 700; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; padding: 16px 24px 10px; }
+  .yt-link { display: flex; align-items: center; gap: 12px; padding: 10px 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; margin-bottom: 6px; text-decoration: none; transition: var(--transition); }
+  .yt-link:hover { background: rgba(232,255,71,0.06); border-color: rgba(232,255,71,0.3); }
+  .yt-link-icon { width: 32px; height: 32px; background: #FF0000; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; flex-shrink: 0; }
+  .yt-link-text { flex: 1; min-width: 0; }
+  .yt-link-title { font-size: 13px; font-weight: 600; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .yt-link-meta { font-size: 11px; color: var(--gray); margin-top: 2px; }
+
+  /* PERFIL / SUSCRIPCION */
+  .perfil-hero { background: linear-gradient(135deg, var(--green-mid), var(--green-light)); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; border: 1px solid rgba(232,255,71,0.2); }
+  .perfil-avatar { width: 64px; height: 64px; background: var(--yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 12px; }
+  .perfil-name { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .perfil-mail { font-size: 13px; color: var(--gray); }
+  .perfil-badge { display: inline-block; background: var(--yellow); color: var(--green); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-top: 10px; }
+
+  .config-row { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.08); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: var(--transition); }
+  .config-row:hover { border-color: var(--yellow); background: rgba(232,255,71,0.04); }
+  .config-row-icon { width: 40px; height: 40px; background: rgba(232,255,71,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .config-row-text { flex: 1; }
+  .config-row-title { font-size: 14px; font-weight: 600; color: var(--white); }
+  .config-row-sub { font-size: 11px; color: var(--gray); margin-top: 2px; }
+
+  /* TARJETA FORM */
+  .card-preview { background: linear-gradient(135deg, var(--green-mid), var(--green-light)); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; position: relative; overflow: hidden; border: 1px solid rgba(232,255,71,0.2); }
+  .card-preview::after { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: var(--yellow); opacity: 0.08; border-radius: 50%; }
+  .card-chip { width: 36px; height: 28px; background: linear-gradient(135deg, #D4AF37, #F5D76E); border-radius: 6px; margin-bottom: 16px; }
+  .card-number-display { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: var(--white); letter-spacing: 2px; margin-bottom: 16px; }
+  .card-footer { display: flex; justify-content: space-between; }
+  .card-footer-label { font-size: 9px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
+  .card-footer-value { font-size: 13px; color: var(--white); font-weight: 600; margin-top: 2px; }
+  .card-brand { position: absolute; top: 20px; right: 20px; font-size: 22px; font-weight: 700; color: var(--yellow); font-family: 'Space Grotesk', sans-serif; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 </style>
 </head>
 <body>
@@ -646,7 +680,7 @@
       <div class="step-title">Elegir método de pago</div>
       <div class="step-sub">Plan seleccionado: <span class="text-yellow" id="payment-plan-label">Premium — $14.999/mes</span></div>
 
-      <div class="payment-card" onclick="procesarPago('Tarjeta de crédito')">
+      <div class="payment-card" onclick="elegirMetodo('Tarjeta de crédito')">
         <div class="payment-icon">💳</div>
         <div class="payment-info">
           <div class="payment-name">Tarjeta de crédito</div>
@@ -655,7 +689,7 @@
         <span style="color:var(--yellow);">→</span>
       </div>
 
-      <div class="payment-card" onclick="procesarPago('Tarjeta de débito')">
+      <div class="payment-card" onclick="elegirMetodo('Tarjeta de débito')">
         <div class="payment-icon">💳</div>
         <div class="payment-info">
           <div class="payment-name">Tarjeta de débito</div>
@@ -681,6 +715,149 @@
         </div>
         <span style="color:var(--yellow);">→</span>
       </div>
+    </div>
+  </div>
+
+  <!-- TARJETA FORM -->
+  <div class="screen" id="screen-card-form">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Método</span><span class="sep">›</span><span class="current">Datos de tarjeta</span><span class="sep">›</span><span>Procesar</span></div>
+    <div class="top-nav">
+      <button class="back-btn" onclick="goto('payment-method')">←</button>
+      <div class="top-nav-title">Datos de tarjeta</div>
+      <div style="width:36px;"></div>
+    </div>
+    <div class="screen-content">
+      <div class="step-title">Ingresá los datos</div>
+      <div class="step-sub" id="card-form-method">Tarjeta de crédito</div>
+
+      <div class="card-preview">
+        <div class="card-brand">VISA</div>
+        <div class="card-chip"></div>
+        <div class="card-number-display" id="prev-number">•••• •••• •••• ••••</div>
+        <div class="card-footer">
+          <div>
+            <div class="card-footer-label">Titular</div>
+            <div class="card-footer-value" id="prev-name">NOMBRE APELLIDO</div>
+          </div>
+          <div>
+            <div class="card-footer-label">Vence</div>
+            <div class="card-footer-value" id="prev-exp">MM/AA</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Número de tarjeta</label>
+        <input class="form-input" type="text" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" id="card-number" oninput="formatCardNumber(this)">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Nombre del titular</label>
+        <input class="form-input" type="text" placeholder="Como figura en la tarjeta" id="card-name" oninput="updatePreview()">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Vencimiento</label>
+          <input class="form-input" type="text" inputmode="numeric" maxlength="5" placeholder="MM/AA" id="card-exp" oninput="formatExp(this)">
+        </div>
+        <div class="form-group">
+          <label class="form-label">CVV</label>
+          <input class="form-input" type="text" inputmode="numeric" maxlength="4" placeholder="123" id="card-cvv">
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="submitCard()">Pagar ahora</button>
+    </div>
+  </div>
+
+  <!-- PERFIL / MI SUSCRIPCION -->
+  <div class="screen" id="screen-perfil">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span class="current">Mi suscripción y cuenta</span></div>
+    <div class="top-nav">
+      <button class="back-btn" onclick="goto('home')">←</button>
+      <div class="top-nav-title">Mi Suscripción</div>
+      <div style="width:36px;"></div>
+    </div>
+    <div class="screen-content">
+      <div class="perfil-hero">
+        <div class="perfil-avatar">👤</div>
+        <div class="perfil-name" id="perfil-name">Santiago Estevez</div>
+        <div class="perfil-mail" id="perfil-mail">santiago@fitlife.com</div>
+        <div class="perfil-badge" id="perfil-plan-badge">⭐ Plan Premium</div>
+      </div>
+
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:var(--gray); text-transform:uppercase; letter-spacing:1px; margin: 12px 0;">Suscripción</div>
+
+      <div class="config-row" onclick="goto('plan')">
+        <div class="config-row-icon">🔄</div>
+        <div class="config-row-text">
+          <div class="config-row-title">Cambiar plan</div>
+          <div class="config-row-sub">Básico, Premium o Elite</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
+
+      <div class="config-row" onclick="goto('payment-method')">
+        <div class="config-row-icon">💳</div>
+        <div class="config-row-text">
+          <div class="config-row-title">Método de pago</div>
+          <div class="config-row-sub">Cambiar o actualizar</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
+
+      <div class="config-row" onclick="showAlert('Facturación: próxima en 12 días', 'success')">
+        <div class="config-row-icon">📅</div>
+        <div class="config-row-text">
+          <div class="config-row-title">Próximo cobro</div>
+          <div class="config-row-sub">15 de Junio · $14.999</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
+
+      <div class="config-row" onclick="showAlert('Historial de pagos cargado', 'success')">
+        <div class="config-row-icon">📋</div>
+        <div class="config-row-text">
+          <div class="config-row-title">Historial de pagos</div>
+          <div class="config-row-sub">Ver facturas anteriores</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
+
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:var(--gray); text-transform:uppercase; letter-spacing:1px; margin: 20px 0 12px;">Cuenta</div>
+
+      <div class="config-row" onclick="showAlert('Datos personales abiertos', 'success')">
+        <div class="config-row-icon">👤</div>
+        <div class="config-row-text">
+          <div class="config-row-title">Datos personales</div>
+          <div class="config-row-sub">Nombre, email, teléfono</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
+
+      <div class="config-row" onclick="showAlert('Cambio de contraseña', 'success')">
+        <div class="config-row-icon">🔒</div>
+        <div class="config-row-text">
+          <div class="config-row-title">Cambiar contraseña</div>
+          <div class="config-row-sub">Seguridad de la cuenta</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
+
+      <div class="config-row" onclick="showAlert('Notificaciones configuradas', 'success')">
+        <div class="config-row-icon">🔔</div>
+        <div class="config-row-text">
+          <div class="config-row-title">Notificaciones</div>
+          <div class="config-row-sub">Push, email, recordatorios</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
+
+      <button class="btn-danger" onclick="if(confirm('¿Cancelar suscripción?')) goto('access-denied')">Cancelar suscripción</button>
+      <button class="btn-secondary" onclick="goto('auth-choice')">Cerrar sesión</button>
     </div>
   </div>
 
@@ -770,25 +947,11 @@
       </div>
     </div>
 
-    <div class="menu-section-label">Menú de otras opciones — ¿Qué opción elegís?</div>
-
     <div class="menu-grid">
       <div class="menu-card" onclick="goto('nutrition')">
         <div class="menu-card-icon">🥗</div>
         <div class="menu-card-title">Plan de Nutrición</div>
         <div class="menu-card-sub">Recomendaciones</div>
-        <div class="menu-card-arrow">→</div>
-      </div>
-      <div class="menu-card" onclick="goto('puntos-vida-check')">
-        <div class="menu-card-icon">⚡</div>
-        <div class="menu-card-title">Puntos Vida</div>
-        <div class="menu-card-sub">Saldo o beneficios</div>
-        <div class="menu-card-arrow">→</div>
-      </div>
-      <div class="menu-card" onclick="goto('classes')">
-        <div class="menu-card-icon">🎥</div>
-        <div class="menu-card-title">Clases</div>
-        <div class="menu-card-sub">Virtuales o presenciales</div>
         <div class="menu-card-arrow">→</div>
       </div>
       <div class="menu-card" onclick="goto('routines')">
@@ -800,15 +963,44 @@
       <div class="menu-card" onclick="goto('qr-bio')">
         <div class="menu-card-icon">📱</div>
         <div class="menu-card-title">QR de acceso</div>
-        <div class="menu-card-sub">Escaneo facial requerido</div>
+        <div class="menu-card-sub">Escaneo facial</div>
         <div class="menu-card-arrow">→</div>
       </div>
-      <div class="menu-card" onclick="goto('sedes')">
-        <div class="menu-card-icon">📍</div>
-        <div class="menu-card-title">Sedes</div>
-        <div class="menu-card-sub">Mapa con sedes</div>
+      <div class="menu-card" onclick="goto('perfil')">
+        <div class="menu-card-icon">⚙️</div>
+        <div class="menu-card-title">Mi Suscripción</div>
+        <div class="menu-card-sub">Configurar cuenta</div>
         <div class="menu-card-arrow">→</div>
       </div>
+    </div>
+
+    <!-- VIDEOS YOUTUBE - compactos -->
+    <div class="yt-section-label">🎬 Entrenamientos destacados</div>
+    <div style="padding: 0 24px 16px;">
+      <a class="yt-link" href="https://www.youtube.com/watch?v=UBMk30rjy0o" target="_blank">
+        <div class="yt-link-icon">▶</div>
+        <div class="yt-link-text">
+          <div class="yt-link-title">Full Body Workout — 30 min</div>
+          <div class="yt-link-meta">🔥 Intermedio · 2.4M vistas</div>
+        </div>
+        <span style="color:var(--gray); font-size:14px;">↗</span>
+      </a>
+      <a class="yt-link" href="https://www.youtube.com/watch?v=ml6cT4AZdqI" target="_blank">
+        <div class="yt-link-icon">▶</div>
+        <div class="yt-link-text">
+          <div class="yt-link-title">HIIT Cardio — 20 min sin equipo</div>
+          <div class="yt-link-meta">⚡ Avanzado · 1.1M vistas</div>
+        </div>
+        <span style="color:var(--gray); font-size:14px;">↗</span>
+      </a>
+      <a class="yt-link" href="https://www.youtube.com/watch?v=v7AYKMP6rOE" target="_blank">
+        <div class="yt-link-icon">▶</div>
+        <div class="yt-link-text">
+          <div class="yt-link-title">Yoga principiantes — 15 min</div>
+          <div class="yt-link-meta">🧘 Principiante · 890K vistas</div>
+        </div>
+        <span style="color:var(--gray); font-size:14px;">↗</span>
+      </a>
     </div>
 
     <div class="bottom-nav">
@@ -1851,6 +2043,51 @@
     _lastPaymentMethod = metodo;
     document.getElementById('processing-method-label').textContent = metodo;
     goto('processing');
+  }
+
+  function elegirMetodo(metodo) {
+    _lastPaymentMethod = metodo;
+    document.getElementById('card-form-method').textContent = metodo;
+    goto('card-form');
+  }
+
+  function formatCardNumber(el) {
+    let v = el.value.replace(/\D/g, '').substring(0, 16);
+    el.value = v.replace(/(\d{4})(?=\d)/g, '$1 ');
+    updatePreview();
+  }
+
+  function formatExp(el) {
+    let v = el.value.replace(/\D/g, '').substring(0, 4);
+    if (v.length >= 3) v = v.substring(0, 2) + '/' + v.substring(2);
+    el.value = v;
+    updatePreview();
+  }
+
+  function updatePreview() {
+    const num = document.getElementById('card-number').value;
+    const name = document.getElementById('card-name').value;
+    const exp = document.getElementById('card-exp').value;
+    document.getElementById('prev-number').textContent = num || '•••• •••• •••• ••••';
+    document.getElementById('prev-name').textContent = (name || 'NOMBRE APELLIDO').toUpperCase();
+    document.getElementById('prev-exp').textContent = exp || 'MM/AA';
+  }
+
+  function submitCard() {
+    const num = document.getElementById('card-number').value.replace(/\s/g, '');
+    const name = document.getElementById('card-name').value;
+    const exp = document.getElementById('card-exp').value;
+    const cvv = document.getElementById('card-cvv').value;
+    if (num.length < 13 || !name || exp.length < 5 || cvv.length < 3) {
+      showAlert('Completá todos los datos correctamente', 'error');
+      return;
+    }
+    document.getElementById('processing-method-label').textContent = _lastPaymentMethod;
+    goto('processing');
+  }
+
+  function openYT(id, title) {
+    showAlert('Reproduciendo: ' + title, 'success');
   }
 
   function checkPagoExitoso() {
