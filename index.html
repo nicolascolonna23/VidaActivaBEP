@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vida Activa</title>
+<title>FitLife App</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap');
 
@@ -35,13 +35,16 @@
   .screen::-webkit-scrollbar { display: none; }
   .screen.active { display: flex; }
 
-  .status-bar { display: none !important; }
+  /* STATUS BAR */
+  .status-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 28px 0; font-size: 13px; font-weight: 600; color: var(--white); flex-shrink: 0; }
   .status-icons { display: flex; gap: 6px; align-items: center; }
 
+  /* STEP BREADCRUMB */
   .step-trail { padding: 8px 24px; font-size: 11px; color: var(--gray); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; flex-shrink: 0; }
   .step-trail span.current { color: var(--yellow); font-weight: 600; }
   .step-trail .sep { color: rgba(255,255,255,0.2); }
 
+  /* TOP NAV */
   .top-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px 0; flex-shrink: 0; }
   .top-nav-title { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); }
   .back-btn { width: 36px; height: 36px; background: rgba(255,255,255,0.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; color: var(--white); font-size: 18px; transition: var(--transition); }
@@ -49,6 +52,7 @@
 
   .screen-content { padding: 20px 24px; flex: 1; overflow-y: auto; }
 
+  /* BUTTONS */
   .btn-primary { width: 100%; padding: 16px; background: var(--yellow); color: var(--green); border: none; border-radius: var(--radius-sm); font-size: 16px; font-weight: 700; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: var(--transition); letter-spacing: -0.3px; }
   .btn-primary:hover { background: var(--yellow-soft); transform: translateY(-1px); }
   .btn-secondary { width: 100%; padding: 14px; background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.2); border-radius: var(--radius-sm); font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: var(--transition); margin-top: 12px; }
@@ -63,8 +67,17 @@
   .splash-title span { color: var(--yellow); }
   .splash-sub { color: var(--gray); font-size: 16px; }
 
+  /* DECISION SCREEN */
   .decision-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; padding: 40px 28px; gap: 32px; text-align: center; }
-  .decision-diamond { width: 220px; height: 220px; background: linear-gradient(135deg, rgba(91,163,245,0.15), rgba(91,163,245,0.05)); border: 2px solid rgba(91,163,245,0.4); transform: rotate(45deg); display: flex; align-items: center; justify-content: center; border-radius: 16px; position: relative; }
+  .decision-diamond {
+    width: 220px; height: 220px;
+    background: linear-gradient(135deg, rgba(91,163,245,0.15), rgba(91,163,245,0.05));
+    border: 2px solid rgba(91,163,245,0.4);
+    transform: rotate(45deg);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 16px;
+    position: relative;
+  }
   .decision-diamond-inner { transform: rotate(-45deg); padding: 20px; text-align: center; }
   .decision-diamond-inner .q-icon { font-size: 32px; margin-bottom: 8px; }
   .decision-diamond-inner .q-text { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; color: var(--white); line-height: 1.3; }
@@ -72,6 +85,7 @@
   .decision-actions button { flex: 1; }
   .decision-context { font-size: 13px; color: var(--gray); line-height: 1.5; max-width: 280px; }
 
+  /* AUTH HERO */
   .auth-hero { background: linear-gradient(170deg, var(--green-mid) 0%, var(--green) 60%); padding: 60px 28px 40px; position: relative; overflow: hidden; }
   .auth-hero::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: var(--yellow); border-radius: 50%; opacity: 0.08; }
   .auth-hero-tag { display: inline-block; background: rgba(232,255,71,0.15); border: 1px solid rgba(232,255,71,0.3); color: var(--yellow); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; letter-spacing: 1px; text-transform: uppercase; }
@@ -79,6 +93,7 @@
   .auth-hero h1 em { color: var(--yellow); font-style: normal; }
   .auth-hero p { color: var(--gray); font-size: 15px; }
 
+  /* AUTH CHOICE */
   .choice-card { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 24px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
   .choice-card:hover { border-color: var(--yellow); background: rgba(232,255,71,0.05); }
   .choice-card-icon { width: 56px; height: 56px; background: rgba(232,255,71,0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
@@ -87,20 +102,24 @@
   .choice-card-sub { font-size: 13px; color: var(--gray); }
   .choice-card-arrow { font-size: 20px; color: var(--yellow); }
 
+  /* FORM */
   .form-group { margin-bottom: 16px; }
   .form-label { font-size: 12px; font-weight: 600; color: var(--gray); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; display: block; }
   .form-input { width: 100%; padding: 14px 16px; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); color: var(--white); font-size: 15px; font-family: 'DM Sans', sans-serif; transition: var(--transition); outline: none; }
   .form-input:focus { border-color: var(--yellow); background: rgba(232,255,71,0.04); }
   .form-input::placeholder { color: var(--gray); }
 
+  /* STEP TITLE */
   .step-title { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
   .step-sub { color: var(--gray); font-size: 14px; margin-bottom: 24px; line-height: 1.5; }
 
+  /* MAIL CONFIRMATION */
   .mail-card { background: linear-gradient(135deg, var(--green-mid), var(--green-light)); border-radius: var(--radius); padding: 24px; text-align: center; margin-bottom: 24px; border: 1px solid rgba(232,255,71,0.2); }
   .mail-icon { font-size: 56px; margin-bottom: 16px; }
   .mail-status { font-size: 14px; color: var(--gray); margin-bottom: 6px; }
   .mail-addr { font-size: 15px; font-weight: 700; color: var(--yellow); word-break: break-all; }
 
+  /* T&C */
   .terms-box { background: rgba(255,255,255,0.04); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 24px; max-height: 280px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.07); }
   .terms-box h4 { color: var(--white); font-size: 13px; font-weight: 700; margin: 12px 0 6px; }
   .terms-box h4:first-child { margin-top: 0; }
@@ -109,6 +128,7 @@
   .terms-checkbox input { margin-top: 3px; accent-color: var(--yellow); }
   .terms-checkbox label { font-size: 13px; color: var(--white); cursor: pointer; }
 
+  /* PLAN */
   .plan-card { background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 20px; margin-bottom: 12px; cursor: pointer; transition: var(--transition); position: relative; }
   .plan-card.featured { border-color: var(--yellow); background: rgba(232,255,71,0.06); }
   .plan-card.selected { border-color: var(--green-accent); background: rgba(76,175,111,0.08); }
@@ -120,6 +140,7 @@
   .plan-features li { font-size: 13px; color: var(--gray); padding: 4px 0; display: flex; align-items: center; gap: 8px; }
   .plan-features li::before { content: '✓'; color: var(--green-accent); font-weight: 700; }
 
+  /* PAYMENT */
   .payment-card { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 18px; margin-bottom: 10px; display: flex; align-items: center; gap: 16px; cursor: pointer; transition: var(--transition); }
   .payment-card:hover { border-color: var(--yellow); background: rgba(232,255,71,0.04); }
   .payment-icon { width: 48px; height: 48px; background: rgba(232,255,71,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
@@ -127,16 +148,19 @@
   .payment-name { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
   .payment-desc { font-size: 12px; color: var(--gray); }
 
+  /* GRANTED */
   .granted-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; padding: 40px 28px; text-align: center; gap: 16px; }
   .granted-icon { width: 100px; height: 100px; background: rgba(76,175,111,0.15); border: 3px solid var(--green-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 48px; margin-bottom: 16px; animation: pulse 2s infinite; }
   .granted-title { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--green-accent); }
   .granted-sub { font-size: 15px; color: var(--gray); line-height: 1.6; }
 
+  /* DENIED */
   .denied-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; padding: 40px 28px; text-align: center; gap: 16px; }
   .denied-icon { width: 100px; height: 100px; background: rgba(255,68,68,0.15); border: 3px solid var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 48px; margin-bottom: 16px; }
   .denied-title { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: #FF6B6B; }
   .denied-sub { font-size: 15px; color: var(--gray); line-height: 1.6; }
 
+  /* PROCESSING */
   .processing-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; padding: 40px; gap: 24px; text-align: center; }
   .spinner { width: 80px; height: 80px; border: 4px solid rgba(232,255,71,0.2); border-top-color: var(--yellow); border-radius: 50%; animation: spin 1s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -154,7 +178,10 @@
   .home-card-sub { font-size: 13px; color: var(--green); opacity: 0.6; }
   .home-card-icon { font-size: 40px; }
 
-  .menu-section-label { font-size: 11px; font-weight: 700; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; padding: 24px 24px 12px; display: flex; align-items: center; gap: 8px; }
+  .menu-section-label {
+    font-size: 11px; font-weight: 700; color: var(--gray); letter-spacing: 1px; text-transform: uppercase;
+    padding: 24px 24px 12px; display: flex; align-items: center; gap: 8px;
+  }
   .menu-section-label::before { content: ''; width: 14px; height: 2px; background: var(--yellow); }
 
   .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 24px; }
@@ -168,8 +195,8 @@
   /* BOTTOM NAV */
   .bottom-nav { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(26,58,42,0.95); backdrop-filter: blur(20px); border-top: 1px solid rgba(255,255,255,0.08); display: flex; padding: 12px 0 24px; }
   .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; transition: var(--transition); }
-  .nav-icon { font-size: 20px; }
-  .nav-label { font-size: 9px; font-weight: 600; color: var(--gray); letter-spacing: 0.3px; }
+  .nav-icon { font-size: 22px; }
+  .nav-label { font-size: 10px; font-weight: 600; color: var(--gray); letter-spacing: 0.3px; }
   .nav-item.active .nav-label { color: var(--yellow); }
 
   /* NUTRICION */
@@ -189,11 +216,12 @@
   .macro-val { font-size: 16px; font-weight: 700; color: var(--yellow); }
   .macro-label { font-size: 10px; color: var(--gray); }
 
+  /* DIETA DETALLADA */
   .meal-row { background: rgba(255,255,255,0.04); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
   .meal-time { font-size: 13px; color: var(--white); font-weight: 700; margin-bottom: 6px; }
   .meal-desc { font-size: 12px; color: var(--gray); line-height: 1.5; }
 
-  /* PUNTOS */
+  /* VIDA PUNTOS */
   .points-hero { margin: 0 24px 20px; background: linear-gradient(135deg, var(--green-mid), var(--green-light)); border-radius: var(--radius); padding: 24px; text-align: center; border: 1px solid rgba(232,255,71,0.2); }
   .points-label { color: var(--gray); font-size: 13px; margin-bottom: 8px; }
   .points-value { font-family: 'Space Grotesk', sans-serif; font-size: 52px; font-weight: 700; color: var(--yellow); line-height: 1; }
@@ -228,11 +256,13 @@
   .class-meta { display: flex; gap: 12px; flex-wrap: wrap; }
   .class-meta-item { font-size: 12px; color: var(--gray); display: flex; align-items: center; gap: 4px; }
 
+  /* HORARIO PICKER */
   .horario-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 20px; }
   .horario-chip { padding: 12px; text-align: center; border-radius: var(--radius-sm); background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.1); font-size: 13px; font-weight: 600; color: var(--white); cursor: pointer; transition: var(--transition); }
   .horario-chip.selected { background: var(--yellow); color: var(--green); border-color: var(--yellow); }
   .horario-chip.unavailable { opacity: 0.3; cursor: not-allowed; }
 
+  /* CLASS DETAIL */
   .class-detail-hero { height: 160px; background: linear-gradient(135deg, var(--green-mid), var(--green-light)); display: flex; align-items: center; justify-content: center; font-size: 64px; margin: 0 -24px 20px; position: relative; }
   .class-detail-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
   .class-detail-meta span { background: rgba(255,255,255,0.08); color: var(--white); font-size: 12px; padding: 5px 12px; border-radius: 20px; }
@@ -244,7 +274,17 @@
   .qr-timer { background: rgba(232,255,71,0.1); border: 1px solid rgba(232,255,71,0.3); border-radius: 30px; padding: 10px 24px; font-size: 14px; font-weight: 600; color: var(--yellow); display: flex; align-items: center; gap: 8px; margin: 0 auto 12px; width: fit-content; }
   .qr-timer-dot { width: 8px; height: 8px; background: var(--yellow); border-radius: 50%; animation: blink 1s infinite; }
   @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+  .qr-valid-badge { background: linear-gradient(135deg, #FFB84D, #FF9233); color: white; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; display: inline-block; margin: 12px auto 0; }
   .bio-icon-big { width: 120px; height: 120px; background: rgba(232,255,71,0.1); border: 3px solid var(--yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 56px; margin: 0 auto 24px; animation: pulse 2s infinite; }
+  .face-scan-frame { width: 220px; height: 220px; margin: 0 auto 20px; position: relative; border-radius: 24px; overflow: hidden; background: rgba(255,255,255,0.04); border: 2px solid rgba(232,255,71,0.3); display: flex; align-items: center; justify-content: center; }
+  .face-scan-frame .corner { position: absolute; width: 28px; height: 28px; border-color: var(--yellow); border-style: solid; }
+  .face-scan-frame .c-tl { top: 10px; left: 10px; border-width: 3px 0 0 3px; border-top-left-radius: 8px; }
+  .face-scan-frame .c-tr { top: 10px; right: 10px; border-width: 3px 3px 0 0; border-top-right-radius: 8px; }
+  .face-scan-frame .c-bl { bottom: 10px; left: 10px; border-width: 0 0 3px 3px; border-bottom-left-radius: 8px; }
+  .face-scan-frame .c-br { bottom: 10px; right: 10px; border-width: 0 3px 3px 0; border-bottom-right-radius: 8px; }
+  .face-scan-frame .face-emoji { font-size: 100px; }
+  .face-scan-line { position: absolute; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--yellow), transparent); animation: scanline 2s linear infinite; }
+  @keyframes scanline { 0% { top: 10%; } 50% { top: 90%; } 100% { top: 10%; } }
 
   /* SEDES */
   .sede-card { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 18px; margin-bottom: 10px; cursor: pointer; transition: var(--transition); }
@@ -257,24 +297,29 @@
   .sede-address { font-size: 13px; color: var(--gray); margin-bottom: 12px; }
   .sede-info-row { display: flex; gap: 16px; flex-wrap: wrap; }
   .sede-info-item { font-size: 12px; color: var(--gray); display: flex; align-items: center; gap: 4px; }
+
   .map-placeholder { background: linear-gradient(135deg, rgba(91,163,245,0.1), rgba(76,175,111,0.05)); border-radius: var(--radius); height: 140px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border: 1.5px solid rgba(255,255,255,0.08); flex-direction: column; gap: 8px; }
 
+  /* SEDE DETAIL */
   .detail-option { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 18px; margin-bottom: 10px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 14px; }
   .detail-option:hover { border-color: var(--yellow); background: rgba(232,255,71,0.04); }
   .detail-option-icon { width: 44px; height: 44px; background: rgba(232,255,71,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
   .detail-option-text { flex: 1; }
   .detail-option-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
   .detail-option-sub { font-size: 12px; color: var(--gray); }
+
   .info-box { background: rgba(255,255,255,0.05); border-radius: var(--radius); padding: 18px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.07); }
   .info-box-title { font-size: 12px; font-weight: 700; color: var(--gray); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; }
   .info-box-content { font-size: 14px; color: var(--white); line-height: 1.7; }
 
+  /* RUTINAS */
   .routine-card { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 18px; margin-bottom: 10px; cursor: pointer; transition: var(--transition); }
   .routine-card:hover { border-color: rgba(232,255,71,0.4); }
   .routine-name { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
   .routine-obj { display: inline-block; background: rgba(232,255,71,0.1); color: var(--yellow); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
   .routine-exercises { font-size: 13px; color: var(--gray); }
 
+  /* ALERT */
   .alert { display: none; position: absolute; top: 60px; left: 20px; right: 20px; padding: 14px 18px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; z-index: 200; animation: slideDown 0.3s ease; }
   .alert.show { display: flex; align-items: center; gap: 10px; }
   .alert.success { background: rgba(76,175,111,0.9); color: white; }
@@ -283,67 +328,6 @@
 
   .text-yellow { color: var(--yellow); }
   .gap-info { font-size: 13px; color: var(--gray); text-align: center; margin-top: 12px; }
-
-  /* ═══ REQ 08: CHAT ═══ */
-  .chat-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
-  .chat-msg { max-width: 80%; padding: 12px 16px; border-radius: 16px; font-size: 14px; line-height: 1.5; }
-  .chat-msg.recv { background: rgba(255,255,255,0.08); color: var(--white); border-bottom-left-radius: 4px; align-self: flex-start; }
-  .chat-msg.sent { background: var(--yellow); color: var(--green); border-bottom-right-radius: 4px; align-self: flex-end; font-weight: 600; }
-  .chat-meta { font-size: 10px; color: var(--gray); margin-top: 4px; }
-  .chat-input-row { display: flex; gap: 8px; align-items: center; }
-  .chat-input { flex: 1; padding: 12px 16px; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.1); border-radius: 24px; color: var(--white); font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none; }
-  .chat-input:focus { border-color: var(--yellow); }
-  .chat-send-btn { width: 44px; height: 44px; background: var(--yellow); border: none; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: var(--transition); }
-  .chat-send-btn:hover { background: var(--yellow-soft); }
-  .chat-contact { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: var(--transition); }
-  .chat-contact:hover { border-color: rgba(232,255,71,0.4); }
-  .chat-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
-  .chat-contact-info { flex: 1; }
-  .chat-contact-name { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
-  .chat-contact-role { font-size: 12px; color: var(--gray); }
-  .chat-unread { background: var(--yellow); color: var(--green); font-size: 11px; font-weight: 700; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-
-  /* ═══ REQ 14: SUSTENTABILIDAD ═══ */
-  .eco-stat { background: rgba(76,175,111,0.08); border: 1.5px solid rgba(76,175,111,0.25); border-radius: var(--radius); padding: 18px; margin-bottom: 10px; display: flex; align-items: center; gap: 16px; }
-  .eco-icon { width: 52px; height: 52px; background: rgba(76,175,111,0.15); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
-  .eco-val { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--green-accent); }
-  .eco-label { font-size: 12px; color: var(--gray); }
-  .paperless-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(76,175,111,0.15); border: 1px solid rgba(76,175,111,0.3); color: var(--green-accent); font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; margin-bottom: 16px; }
-
-  /* ═══ REQ 15: LANZAMIENTO ═══ */
-  .launch-phase { background: rgba(255,255,255,0.04); border-left: 3px solid rgba(255,255,255,0.12); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 16px 18px; margin-bottom: 12px; }
-  .launch-phase-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-  .launch-phase-name { font-size: 14px; font-weight: 700; color: var(--white); }
-  .launch-phase-weeks { font-size: 11px; color: var(--yellow); font-weight: 600; background: rgba(232,255,71,0.1); padding: 3px 10px; border-radius: 20px; }
-  .launch-phase-desc { font-size: 13px; color: var(--gray); line-height: 1.5; }
-  .launch-phase.phase-active { border-left-color: var(--yellow); }
-  .launch-countdown { background: linear-gradient(135deg, var(--green-mid), var(--green-light)); border-radius: var(--radius); padding: 20px; text-align: center; margin-bottom: 20px; border: 1px solid rgba(232,255,71,0.2); }
-  .launch-date-big { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: var(--yellow); }
-  .launch-progress-bar { height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-top: 14px; overflow: hidden; }
-  .launch-progress-fill { height: 100%; background: var(--yellow); border-radius: 3px; width: 62%; }
-
-  /* ═══ GANTT + ACTIVIDADES ═══ */
-  .gantt-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-  .gantt-label { font-size: 11px; font-weight: 700; color: var(--yellow); width: 20px; flex-shrink: 0; }
-  .gantt-track { flex: 1; height: 10px; background: rgba(255,255,255,0.06); border-radius: 5px; position: relative; overflow: hidden; }
-  .gantt-bar { position: absolute; top: 0; height: 100%; background: rgba(232,255,71,0.35); border-radius: 5px; }
-  .gantt-bar.gantt-active { background: var(--yellow); }
-  .gantt-bar.gantt-sustain { background: rgba(76,175,111,0.6); }
-  .launch-phase-badge { display: inline-block; font-size: 10px; font-weight: 700; color: var(--yellow); background: rgba(232,255,71,0.12); border: 1px solid rgba(232,255,71,0.3); border-radius: 20px; padding: 2px 10px; margin-bottom: 10px; letter-spacing: 0.5px; }
-  .launch-activities { display: flex; flex-direction: column; gap: 8px; }
-  .launch-activity { display: flex; align-items: flex-start; gap: 10px; }
-  .activity-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); flex-shrink: 0; margin-top: 4px; border: 1.5px solid rgba(255,255,255,0.3); }
-  .activity-dot.active-dot { background: var(--yellow); border-color: var(--yellow); box-shadow: 0 0 6px rgba(232,255,71,0.5); }
-  .activity-title { font-size: 13px; color: var(--white); line-height: 1.4; }
-  .activity-weeks { font-size: 11px; color: var(--gray); margin-top: 2px; }
-
-  /* ═══ REQ 12: ESTANDARIZACIÓN ═══ */
-  .sede-std-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; margin-bottom: 20px; }
-  .sede-std-chip { background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.08); border-radius: var(--radius-sm); padding: 12px; text-align: center; cursor: pointer; transition: var(--transition); }
-  .sede-std-chip:hover { border-color: var(--yellow); background: rgba(232,255,71,0.05); }
-  .sede-std-chip .s-name { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
-  .sede-std-chip .s-status { font-size: 11px; color: var(--green-accent); }
-  .std-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(232,255,71,0.1); border: 1px solid rgba(232,255,71,0.25); color: var(--yellow); font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 20px; margin-bottom: 14px; }
 </style>
 </head>
 <body>
@@ -353,9 +337,10 @@
 
   <!-- SPLASH -->
   <div class="screen active" id="screen-splash">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; padding:40px;">
       <div class="splash-logo">🏋️</div>
-      <div class="splash-title">Vida <span>Activa</span></div>
+      <div class="splash-title">Fit<span>Life</span></div>
       <div class="splash-sub">Tu gimnasio, en tu bolsillo</div>
       <div style="width:100%; margin-top:20px;">
         <button class="btn-primary" onclick="goto('auth-choice')">Ingresar a la app</button>
@@ -366,6 +351,7 @@
   <!-- AUTH CHOICE -->
   <div class="screen" id="screen-auth-choice">
     <div class="auth-hero">
+      <div class="status-bar" style="padding:0 0 16px;"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
       <div class="auth-hero-tag">Bienvenido</div>
       <h1>Entrena más<br><em>inteligente</em></h1>
       <p>Tu app de gimnasio todo en uno</p>
@@ -373,14 +359,22 @@
     <div style="padding: 32px 28px; flex: 1;">
       <div class="step-title" style="font-size:20px;">¿Iniciar sesión o Registrarse?</div>
       <div class="step-sub">Elegí cómo querés ingresar</div>
+
       <div class="choice-card" onclick="goto('login')">
         <div class="choice-card-icon">🔑</div>
-        <div class="choice-card-info"><div class="choice-card-title">Iniciar sesión</div><div class="choice-card-sub">Ya tengo una cuenta</div></div>
+        <div class="choice-card-info">
+          <div class="choice-card-title">Iniciar sesión</div>
+          <div class="choice-card-sub">Ya tengo una cuenta</div>
+        </div>
         <div class="choice-card-arrow">→</div>
       </div>
+
       <div class="choice-card" onclick="goto('register-mail')">
         <div class="choice-card-icon">✨</div>
-        <div class="choice-card-info"><div class="choice-card-title">Registrarse</div><div class="choice-card-sub">Crear cuenta nueva</div></div>
+        <div class="choice-card-info">
+          <div class="choice-card-title">Registrarse</div>
+          <div class="choice-card-sub">Crear cuenta nueva</div>
+        </div>
         <div class="choice-card-arrow">→</div>
       </div>
     </div>
@@ -388,7 +382,10 @@
 
   <!-- LOGIN -->
   <div class="screen" id="screen-login">
-    <div class="step-trail"><span>Iniciar sesión</span><span class="sep">›</span><span class="current">Credenciales</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail">
+      <span>Iniciar sesión</span><span class="sep">›</span><span class="current">Ingresar credenciales</span>
+    </div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('auth-choice')">←</button>
       <div class="top-nav-title">Iniciar sesión</div>
@@ -397,29 +394,51 @@
     <div class="screen-content">
       <div class="step-title">Ingresar credenciales</div>
       <div class="step-sub">Usá el email y contraseña con los que te registraste</div>
-      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="login-email" value="usuario@fitlife.com"></div>
-      <div class="form-group"><label class="form-label">Contraseña</label><input class="form-input" type="password" id="login-pass" value="demo1234"></div>
+
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="tucorreo@gmail.com" id="login-email" value="usuario@fitlife.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Contraseña</label>
+        <input class="form-input" type="password" placeholder="••••••••" id="login-pass" value="demo1234">
+      </div>
+
       <button class="btn-primary" onclick="doLogin()">Iniciar sesión</button>
-      <p class="gap-info">Tip: <span class="text-yellow">vencida@test.com</span> simula cuota vencida</p>
+      <p class="gap-info">Tip: usar <span class="text-yellow">vencida@test.com</span> simula cuota vencida</p>
     </div>
   </div>
 
   <!-- CUOTA CHECK -->
   <div class="screen" id="screen-cuota-check">
-    <div class="step-trail"><span>Login</span><span class="sep">›</span><span class="current">Verificando cuota</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Login</span><span class="sep">›</span><span class="current">Verificando estado de cuota</span></div>
     <div class="decision-screen">
-      <div class="decision-diamond"><div class="decision-diamond-inner"><div class="q-icon">💰</div><div class="q-text">¿Tiene cuota<br>al día?</div></div></div>
+      <div class="decision-diamond">
+        <div class="decision-diamond-inner">
+          <div class="q-icon">💰</div>
+          <div class="q-text">¿Tiene cuota<br>al día?</div>
+        </div>
+      </div>
       <div class="decision-context">Verificamos el estado de tu suscripción</div>
-      <div style="width:100%;" id="cuota-result"><div class="spinner" style="margin: 0 auto;"></div></div>
+      <div style="width:100%;" id="cuota-result">
+        <div class="spinner" style="margin: 0 auto;"></div>
+      </div>
     </div>
   </div>
 
-  <!-- RENOVAR CHECK -->
+  <!-- RENOVAR -->
   <div class="screen" id="screen-renovar-check">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div class="step-trail"><span>Login</span><span class="sep">›</span><span>Cuota vencida</span><span class="sep">›</span><span class="current">¿Renovar?</span></div>
     <div class="decision-screen">
-      <div class="decision-diamond"><div class="decision-diamond-inner"><div class="q-icon">🔄</div><div class="q-text">¿Renovar<br>suscripción?</div></div></div>
-      <div class="decision-context">Tu membresía venció. Renová para seguir accediendo</div>
+      <div class="decision-diamond">
+        <div class="decision-diamond-inner">
+          <div class="q-icon">🔄</div>
+          <div class="q-text">¿Renovar<br>suscripción?</div>
+        </div>
+      </div>
+      <div class="decision-context">Tu membresía venció. Renová tu plan para seguir accediendo al contenido</div>
       <div class="decision-actions">
         <button class="btn-danger" onclick="goto('access-denied')" style="margin-top:0;">No</button>
         <button class="btn-primary" onclick="goto('payment-method')">Sí, renovar</button>
@@ -427,9 +446,12 @@
     </div>
   </div>
 
-  <!-- REGISTER MAIL -->
+  <!-- REGISTER -->
   <div class="screen" id="screen-register-mail">
-    <div class="step-trail"><span>Registro</span><span class="sep">›</span><span class="current">Mail y contraseña</span><span class="sep">›</span><span>Confirmar</span><span class="sep">›</span><span>T&C</span><span class="sep">›</span><span>Plan</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail">
+      <span>Registro</span><span class="sep">›</span><span class="current">Mail y contraseña</span><span class="sep">›</span><span>Confirmar mail</span><span class="sep">›</span><span>T&C</span><span class="sep">›</span><span>Plan</span><span class="sep">›</span><span>Pago</span>
+    </div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('auth-choice')">←</button>
       <div class="top-nav-title">Crear cuenta</div>
@@ -438,19 +460,34 @@
     <div class="screen-content">
       <div class="step-title">Ingresar mail y contraseña</div>
       <div class="step-sub">Empezamos con tus datos de acceso</div>
-      <div class="form-group"><label class="form-label">Nombre completo</label><input class="form-input" type="text" id="reg-name" value="Santiago Estevez"></div>
-      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="reg-email" value="santiago@fitlife.com"></div>
-      <div class="form-group"><label class="form-label">Contraseña</label><input class="form-input" type="password" id="reg-pass" value="demo1234"></div>
+
+      <div class="form-group">
+        <label class="form-label">Nombre completo</label>
+        <input class="form-input" type="text" placeholder="Juan García" id="reg-name" value="Santiago Estevez">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="tucorreo@gmail.com" id="reg-email" value="santiago@fitlife.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Contraseña</label>
+        <input class="form-input" type="password" placeholder="••••••••" id="reg-pass" value="demo1234">
+      </div>
+
       <button class="btn-primary" onclick="doRegister()">Continuar →</button>
     </div>
   </div>
 
   <!-- SEND MAIL -->
   <div class="screen" id="screen-send-mail">
-    <div class="step-trail"><span>Registro</span><span class="sep">›</span><span class="current">Enviando confirmación</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail">
+      <span>Registro</span><span class="sep">›</span><span>Mail</span><span class="sep">›</span><span class="current">Enviando confirmación</span>
+    </div>
     <div class="decision-screen">
       <div class="bio-icon-big" style="background:rgba(91,163,245,0.1); border-color:var(--blue);">📨</div>
-      <div class="step-title" style="text-align:center;">Enviando mail de confirmación</div>
+      <div class="step-title" style="text-align:center;">Enviar mail de confirmación</div>
+      <div class="decision-context">Te estamos enviando un correo a:</div>
       <div class="mail-addr" id="sent-mail-addr" style="font-size:16px; text-align:center;">santiago@fitlife.com</div>
       <div class="spinner" style="margin: 8px auto;"></div>
     </div>
@@ -458,12 +495,29 @@
 
   <!-- CONFIRM MAIL -->
   <div class="screen" id="screen-confirm-mail">
-    <div class="step-trail"><span>Registro</span><span class="sep">›</span><span class="current">Confirmar mail</span></div>
-    <div class="top-nav"><div class="top-nav-title">Confirmar mail</div></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail">
+      <span>Registro</span><span class="sep">›</span><span>Mail</span><span class="sep">›</span><span class="current">Confirmar mail</span>
+    </div>
+    <div class="top-nav">
+      <div class="top-nav-title">Confirmar mail</div>
+    </div>
     <div class="screen-content">
       <div class="step-title">Confirmar mail</div>
-      <div class="step-sub">Revisá tu bandeja y confirmá el correo</div>
-      <div class="mail-card"><div class="mail-icon">📧</div><div class="mail-status">Mail enviado a</div><div class="mail-addr" id="confirm-mail-addr">santiago@fitlife.com</div></div>
+      <div class="step-sub">Revisá tu bandeja de entrada y confirmá el correo</div>
+
+      <div class="mail-card">
+        <div class="mail-icon">📧</div>
+        <div class="mail-status">Mail enviado a</div>
+        <div class="mail-addr" id="confirm-mail-addr">santiago@fitlife.com</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04); border-radius:10px; padding:14px; margin-bottom:24px; border:1px dashed rgba(232,255,71,0.3);">
+        <div style="font-size:12px; color:var(--gray); margin-bottom:6px;">📥 Asunto</div>
+        <div style="font-size:13px; color:var(--white); margin-bottom:10px;">Confirmá tu cuenta FitLife</div>
+        <div style="font-size:12px; color:var(--gray);">Hacé click en el enlace del mail para verificar tu cuenta</div>
+      </div>
+
       <button class="btn-primary" onclick="goto('terms')">Ya confirmé mi mail ✓</button>
       <button class="btn-secondary" onclick="showAlert('Mail reenviado', 'success')">Reenviar mail</button>
     </div>
@@ -471,19 +525,35 @@
 
   <!-- TERMS -->
   <div class="screen" id="screen-terms">
-    <div class="step-trail"><span>Registro</span><span class="sep">›</span><span class="current">Firmar T&C</span></div>
-    <div class="top-nav"><div class="top-nav-title">Términos y condiciones</div></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail">
+      <span>Registro</span><span class="sep">›</span><span>Mail</span><span class="sep">›</span><span class="current">Firmar T&C</span>
+    </div>
+    <div class="top-nav">
+      <div class="top-nav-title">Términos y condiciones</div>
+    </div>
     <div class="screen-content">
       <div class="step-title">Firmar términos y condiciones</div>
       <div class="step-sub">Leé y aceptá los términos para continuar</div>
+
       <div class="terms-box">
-        <h4>1. Política de privacidad</h4><p>Tus datos biométricos, de salud y personales son confidenciales. No se comparten con terceros sin tu consentimiento.</p>
-        <h4>2. Condiciones de membresía</h4><p>La membresía se renueva automáticamente cada mes. Podés cancelar en cualquier momento desde tu perfil.</p>
-        <h4>3. Uso responsable</h4><p>Queda prohibido el mal uso de las instalaciones, la reventa de beneficios y el préstamo del QR de acceso.</p>
-        <h4>4. Política de cancelación</h4><p>Las cancelaciones se procesan en hasta 5 días hábiles. Los reintegros se realizan al medio de pago original.</p>
-        <h4>5. Sistema Vida Puntos</h4><p>Los puntos no son canjeables por dinero ni transferibles. Vencen al cabo de 12 meses sin uso.</p>
+        <h4>1. Política de privacidad</h4>
+        <p>Tus datos biométricos, de salud y personales son confidenciales. No se comparten con terceros sin tu consentimiento.</p>
+        <h4>2. Condiciones de membresía</h4>
+        <p>La membresía se renueva automáticamente cada mes. Podés cancelar en cualquier momento desde tu perfil.</p>
+        <h4>3. Uso responsable</h4>
+        <p>Queda prohibido el mal uso de las instalaciones, la reventa de beneficios y el préstamo del QR de acceso.</p>
+        <h4>4. Política de cancelación</h4>
+        <p>Las cancelaciones se procesan en hasta 5 días hábiles. Los reintegros se realizan al medio de pago original.</p>
+        <h4>5. Sistema Vida Puntos</h4>
+        <p>Los puntos no son canjeables por dinero ni transferibles. Vencen al cabo de 12 meses sin uso.</p>
       </div>
-      <div class="terms-checkbox"><input type="checkbox" id="terms-accept"><label for="terms-accept">He leído y acepto los términos y condiciones</label></div>
+
+      <div class="terms-checkbox">
+        <input type="checkbox" id="terms-accept">
+        <label for="terms-accept">He leído y acepto los términos y condiciones</label>
+      </div>
+
       <button class="btn-primary" onclick="doSignTerms()">Firmar y continuar</button>
       <button class="btn-secondary" onclick="goto('access-denied')">No acepto</button>
     </div>
@@ -491,34 +561,69 @@
 
   <!-- PLAN -->
   <div class="screen" id="screen-plan">
-    <div class="step-trail"><span>Registro</span><span class="sep">›</span><span>T&C</span><span class="sep">›</span><span class="current">Elegir plan</span></div>
-    <div class="top-nav"><div class="top-nav-title">Elegir plan</div></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail">
+      <span>Registro</span><span class="sep">›</span><span>T&C</span><span class="sep">›</span><span class="current">Elegir plan</span>
+    </div>
+    <div class="top-nav">
+      <div class="top-nav-title">Elegir plan</div>
+    </div>
     <div class="screen-content">
       <div class="step-title">Elegir plan de suscripción</div>
       <div class="step-sub">Seleccioná el plan que mejor se adapte</div>
+
       <div class="plan-card" onclick="selectPlan(this, 'Básico', '$8.999')">
-        <div class="plan-name">Básico</div><div class="plan-price">$8.999 <span>/mes</span></div>
-        <ul class="plan-features"><li>Acceso a 1 sede</li><li>Clases virtuales ilimitadas</li><li>Plan de rutinas básico</li></ul>
+        <div class="plan-name">Básico</div>
+        <div class="plan-price">$8.999 <span>/mes</span></div>
+        <ul class="plan-features">
+          <li>Acceso a 1 sede</li>
+          <li>Clases virtuales ilimitadas</li>
+          <li>Plan de rutinas básico</li>
+        </ul>
       </div>
+
       <div class="plan-card featured" onclick="selectPlan(this, 'Premium', '$14.999')">
         <div class="plan-badge-featured">⭐ Más popular</div>
-        <div class="plan-name">Premium</div><div class="plan-price">$14.999 <span>/mes</span></div>
-        <ul class="plan-features"><li>Acceso a todas las sedes</li><li>Plan nutricional personalizado</li><li>Sistema Vida Puntos</li><li>Reserva de máquinas</li></ul>
+        <div class="plan-name">Premium</div>
+        <div class="plan-price">$14.999 <span>/mes</span></div>
+        <ul class="plan-features">
+          <li>Acceso a todas las sedes</li>
+          <li>Plan nutricional personalizado</li>
+          <li>Sistema Vida Puntos</li>
+          <li>Reserva de máquinas</li>
+        </ul>
       </div>
+
       <div class="plan-card" onclick="selectPlan(this, 'Elite', '$24.999')">
-        <div class="plan-name">Elite</div><div class="plan-price">$24.999 <span>/mes</span></div>
-        <ul class="plan-features"><li>Todo lo del plan Premium</li><li>Entrenador personal virtual</li><li>Doble de puntos Vida</li></ul>
+        <div class="plan-name">Elite</div>
+        <div class="plan-price">$24.999 <span>/mes</span></div>
+        <ul class="plan-features">
+          <li>Todo lo del plan Premium</li>
+          <li>Entrenador personal virtual</li>
+          <li>Doble de puntos Vida</li>
+        </ul>
       </div>
+
       <button class="btn-primary" id="btn-continue-plan" onclick="goto('pagar-check')" style="margin-top:20px; opacity:0.5; pointer-events:none;">Continuar →</button>
     </div>
   </div>
 
-  <!-- PAGAR CHECK -->
+  <!-- PAGAR -->
   <div class="screen" id="screen-pagar-check">
-    <div class="step-trail"><span>Plan</span><span class="sep">›</span><span class="current">¿Pagar?</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail">
+      <span>Plan</span><span class="sep">›</span><span class="current">¿Pagar?</span>
+    </div>
     <div class="decision-screen">
-      <div class="decision-diamond"><div class="decision-diamond-inner"><div class="q-icon">💳</div><div class="q-text">¿Pagar?</div></div></div>
-      <div class="decision-context">Confirmá que querés proceder al pago del plan <span class="text-yellow" id="pagar-plan-label">Premium</span></div>
+      <div class="decision-diamond">
+        <div class="decision-diamond-inner">
+          <div class="q-icon">💳</div>
+          <div class="q-text">¿Pagar?</div>
+        </div>
+      </div>
+      <div class="decision-context">
+        Confirmá que querés proceder al pago del plan <span class="text-yellow" id="pagar-plan-label">Premium</span>
+      </div>
       <div class="decision-actions">
         <button class="btn-danger" onclick="goto('access-denied')" style="margin-top:0;">No</button>
         <button class="btn-primary" onclick="goto('payment-method')">Sí, pagar</button>
@@ -528,7 +633,10 @@
 
   <!-- PAYMENT METHOD -->
   <div class="screen" id="screen-payment-method">
-    <div class="step-trail"><span>¿Pagar?</span><span class="sep">›</span><span class="current">Método de pago</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail">
+      <span>¿Pagar?</span><span class="sep">›</span><span class="current">Método de pago</span><span class="sep">›</span><span>Procesar</span><span class="sep">›</span><span>¿Exitoso?</span>
+    </div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('pagar-check')">←</button>
       <div class="top-nav-title">Método de pago</div>
@@ -536,39 +644,84 @@
     </div>
     <div class="screen-content">
       <div class="step-title">Elegir método de pago</div>
-      <div class="step-sub">Plan: <span class="text-yellow" id="payment-plan-label">Premium — $14.999/mes</span></div>
-      <div class="payment-card" onclick="procesarPago('Tarjeta de crédito')"><div class="payment-icon">💳</div><div class="payment-info"><div class="payment-name">Tarjeta de crédito</div><div class="payment-desc">Visa, Mastercard, Amex</div></div><span style="color:var(--yellow);">→</span></div>
-      <div class="payment-card" onclick="procesarPago('Tarjeta de débito')"><div class="payment-icon">💳</div><div class="payment-info"><div class="payment-name">Tarjeta de débito</div><div class="payment-desc">Débito en cuenta directo</div></div><span style="color:var(--yellow);">→</span></div>
-      <div class="payment-card" onclick="procesarPago('Transferencia bancaria')"><div class="payment-icon">🏦</div><div class="payment-info"><div class="payment-name">Transferencia bancaria</div><div class="payment-desc">CBU / CVU / Alias</div></div><span style="color:var(--yellow);">→</span></div>
-      <div class="payment-card" onclick="procesarPago('MercadoPago')"><div class="payment-icon">📱</div><div class="payment-info"><div class="payment-name">MercadoPago</div><div class="payment-desc">Cuenta MP o QR (simula fallo)</div></div><span style="color:var(--yellow);">→</span></div>
+      <div class="step-sub">Plan seleccionado: <span class="text-yellow" id="payment-plan-label">Premium — $14.999/mes</span></div>
+
+      <div class="payment-card" onclick="procesarPago('Tarjeta de crédito')">
+        <div class="payment-icon">💳</div>
+        <div class="payment-info">
+          <div class="payment-name">Tarjeta de crédito</div>
+          <div class="payment-desc">Visa, Mastercard, Amex</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
+
+      <div class="payment-card" onclick="procesarPago('Tarjeta de débito')">
+        <div class="payment-icon">💳</div>
+        <div class="payment-info">
+          <div class="payment-name">Tarjeta de débito</div>
+          <div class="payment-desc">Débito en cuenta directo</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
+
+      <div class="payment-card" onclick="procesarPago('Transferencia bancaria')">
+        <div class="payment-icon">🏦</div>
+        <div class="payment-info">
+          <div class="payment-name">Transferencia bancaria</div>
+          <div class="payment-desc">CBU / CVU / Alias</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
+
+      <div class="payment-card" onclick="procesarPago('MercadoPago')">
+        <div class="payment-icon">📱</div>
+        <div class="payment-info">
+          <div class="payment-name">MercadoPago</div>
+          <div class="payment-desc">Cuenta MP o QR (simula fallo)</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
     </div>
   </div>
 
   <!-- PROCESSING -->
   <div class="screen" id="screen-processing">
-    <div class="step-trail"><span>Método</span><span class="sep">›</span><span class="current">Procesando</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Método de pago</span><span class="sep">›</span><span class="current">Procesando</span></div>
     <div class="processing-screen">
       <div class="spinner"></div>
-      <div class="step-title">Procesando pago</div>
+      <div class="step-title">Procesar pago</div>
       <div class="step-sub" style="margin-bottom:0;">Con <span class="text-yellow" id="processing-method-label">Tarjeta de crédito</span></div>
     </div>
   </div>
 
-  <!-- PAGO EXITOSO CHECK -->
+  <!-- PAGO EXITOSO -->
   <div class="screen" id="screen-pago-exitoso-check">
-    <div class="step-trail"><span>Procesando</span><span class="sep">›</span><span class="current">¿Exitoso?</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Procesar pago</span><span class="sep">›</span><span class="current">¿Exitoso?</span></div>
     <div class="decision-screen">
-      <div class="decision-diamond"><div class="decision-diamond-inner"><div class="q-icon">✓</div><div class="q-text">¿Pago<br>exitoso?</div></div></div>
+      <div class="decision-diamond">
+        <div class="decision-diamond-inner">
+          <div class="q-icon">✓</div>
+          <div class="q-text">¿Pago<br>exitoso?</div>
+        </div>
+      </div>
       <div class="decision-context">Procesando respuesta del banco...</div>
       <div class="spinner" style="margin: 0 auto;"></div>
     </div>
   </div>
 
-  <!-- REINTENTAR CHECK -->
+  <!-- REINTENTAR -->
   <div class="screen" id="screen-reintentar-check">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div class="step-trail"><span>Pago fallido</span><span class="sep">›</span><span class="current">¿Reintentar?</span></div>
     <div class="decision-screen">
-      <div class="decision-diamond" style="border-color:rgba(255,68,68,0.4); background:linear-gradient(135deg,rgba(255,68,68,0.15),rgba(255,68,68,0.05));"><div class="decision-diamond-inner"><div class="q-icon">⚠️</div><div class="q-text">¿Reintentar?</div></div></div>
+      <div class="decision-diamond" style="border-color:rgba(255,68,68,0.4); background: linear-gradient(135deg, rgba(255,68,68,0.15), rgba(255,68,68,0.05));">
+        <div class="decision-diamond-inner">
+          <div class="q-icon">⚠️</div>
+          <div class="q-text">¿Reintentar?</div>
+        </div>
+      </div>
       <div class="decision-context">El pago no pudo procesarse. ¿Querés intentar de nuevo?</div>
       <div class="decision-actions">
         <button class="btn-danger" onclick="goto('access-denied')" style="margin-top:0;">No</button>
@@ -579,26 +732,31 @@
 
   <!-- ACCESS GRANTED -->
   <div class="screen" id="screen-access-granted">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div class="granted-screen">
       <div class="granted-icon">✓</div>
       <div class="granted-title">Acceso concedido</div>
-      <div class="granted-sub">Bienvenido. Te redirigimos al inicio.</div>
-      <div class="spinner" style="margin:16px auto; width:40px; height:40px; border-width:3px;"></div>
+      <div class="granted-sub">Bienvenido al contenido de la app. Te redirigimos a la pantalla de inicio.</div>
+      <div class="spinner" style="margin: 16px auto; width:40px; height:40px; border-width:3px;"></div>
     </div>
   </div>
 
   <!-- ACCESS DENIED -->
   <div class="screen" id="screen-access-denied">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div class="denied-screen">
       <div class="denied-icon">✕</div>
       <div class="denied-title">Acceso denegado</div>
-      <div class="denied-sub">No podés acceder sin una suscripción activa.</div>
-      <div style="width:100%; margin-top:16px;"><button class="btn-primary" onclick="goto('auth-choice')">Volver al inicio</button></div>
+      <div class="denied-sub">No podés acceder al contenido de la app sin una suscripción activa.</div>
+      <div style="width:100%; margin-top:16px;">
+        <button class="btn-primary" onclick="goto('auth-choice')">Volver al inicio</button>
+      </div>
     </div>
   </div>
 
   <!-- HOME -->
   <div class="screen" id="screen-home">
+    <div class="status-bar" style="padding:14px 28px 0; flex-shrink:0;"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div class="home-header">
       <div class="home-greeting">Buenos días 👋</div>
       <div class="home-name" id="home-username">Santiago <span>Estevez</span></div>
@@ -612,19 +770,13 @@
       </div>
     </div>
 
-    <div class="menu-section-label">¿Qué opción elegís?</div>
+    <div class="menu-section-label">Menú de otras opciones — ¿Qué opción elegís?</div>
 
     <div class="menu-grid">
       <div class="menu-card" onclick="goto('nutrition')">
         <div class="menu-card-icon">🥗</div>
-        <div class="menu-card-title">Nutrición</div>
+        <div class="menu-card-title">Plan de Nutrición</div>
         <div class="menu-card-sub">Recomendaciones</div>
-        <div class="menu-card-arrow">→</div>
-      </div>
-      <div class="menu-card" onclick="goto('routines')">
-        <div class="menu-card-icon">💪</div>
-        <div class="menu-card-title">Rutinas</div>
-        <div class="menu-card-sub">Personalizadas</div>
         <div class="menu-card-arrow">→</div>
       </div>
       <div class="menu-card" onclick="goto('puntos-vida-check')">
@@ -633,38 +785,29 @@
         <div class="menu-card-sub">Saldo o beneficios</div>
         <div class="menu-card-arrow">→</div>
       </div>
-      <div class="menu-card" onclick="goto('subscription')">
-        <div class="menu-card-icon">🟢</div>
-        <div class="menu-card-title">Suscripción</div>
-        <div class="menu-card-sub">Activa · vence en 12 días</div>
+      <div class="menu-card" onclick="goto('classes')">
+        <div class="menu-card-icon">🎥</div>
+        <div class="menu-card-title">Clases</div>
+        <div class="menu-card-sub">Virtuales o presenciales</div>
         <div class="menu-card-arrow">→</div>
       </div>
-      <div class="menu-card" onclick="goto('chat-contacts')">
-        <div class="menu-card-icon">💬</div>
-        <div class="menu-card-title">Mensajes</div>
-        <div class="menu-card-sub">Profes y nutricionistas</div>
+      <div class="menu-card" onclick="goto('routines')">
+        <div class="menu-card-icon">💪</div>
+        <div class="menu-card-title">Rutinas</div>
+        <div class="menu-card-sub">Personalizadas</div>
         <div class="menu-card-arrow">→</div>
       </div>
-      <div class="menu-card" onclick="goto('estandarizacion')">
-        <div class="menu-card-icon">🏢</div>
-        <div class="menu-card-title">Red de Sedes</div>
-        <div class="menu-card-sub">10 sedes estandarizadas</div>
+      <div class="menu-card" onclick="goto('qr-bio')">
+        <div class="menu-card-icon">📱</div>
+        <div class="menu-card-title">QR de acceso</div>
+        <div class="menu-card-sub">Escaneo facial requerido</div>
         <div class="menu-card-arrow">→</div>
       </div>
-    </div>
-
-    <div style="padding:16px 24px 120px;">
-      <div style="font-size:13px; color:var(--gray); margin-bottom:8px; font-weight:700;">Videos rápidos para rutinas en casa</div>
-      <div style="display:flex; flex-direction:column; gap:8px;">
-        <a class="btn-secondary" href="https://www.youtube.com/results?search_query=10+min+hiit+home" target="_blank">10 min HIIT — En casa (sin equipo)</a>
-        <a class="btn-secondary" href="https://www.youtube.com/results?search_query=15+min+full+body+workout+no+equipment" target="_blank">15 min Full Body — Sin equipo</a>
-      </div>
-      <div class="gap-info" style="margin-top:10px;">Recomendado si no podés acudir al GYM</div>
-      <div style="height:1px; background:rgba(255,255,255,0.06); margin:16px 0;"></div>
-      <div style="font-size:13px; color:var(--gray); margin-bottom:8px; font-weight:700;">Info de la app</div>
-      <div style="display:flex; gap:8px;">
-        <button class="btn-secondary" onclick="goto('lanzamiento')" style="flex:1; margin-top:0; font-size:13px; padding:10px;">📅 Lanzamiento</button>
-        <button class="btn-secondary" onclick="goto('sustentabilidad')" style="flex:1; margin-top:0; font-size:13px; padding:10px;">🌿 Paperless</button>
+      <div class="menu-card" onclick="goto('sedes')">
+        <div class="menu-card-icon">📍</div>
+        <div class="menu-card-title">Sedes</div>
+        <div class="menu-card-sub">Mapa con sedes</div>
+        <div class="menu-card-arrow">→</div>
       </div>
     </div>
 
@@ -674,67 +817,130 @@
       <div class="nav-item" onclick="goto('qr-bio')"><span class="nav-icon">📱</span><span class="nav-label">QR</span></div>
       <div class="nav-item" onclick="goto('sedes')"><span class="nav-icon">📍</span><span class="nav-label">Sedes</span></div>
       <div class="nav-item" onclick="goto('puntos-vida-check')"><span class="nav-icon">⚡</span><span class="nav-label">Puntos</span></div>
-      <div class="nav-item" onclick="goto('chat-contacts')"><span class="nav-icon">💬</span><span class="nav-label">Chat</span></div>
     </div>
   </div>
 
   <!-- NUTRICION -->
   <div class="screen" id="screen-nutrition">
-    <div class="step-trail"><span class="current">Recomendaciones nutricionales</span><span class="sep">›</span><span>Objetivo</span><span class="sep">›</span><span>Dieta detallada</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span class="current">Ver recomendaciones nutricionales</span><span class="sep">›</span><span>Elegir objetivo</span><span class="sep">›</span><span>Dieta detallada</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('home')">←</button>
       <div class="top-nav-title">Plan de Nutrición</div>
       <div style="width:36px;"></div>
     </div>
     <div class="screen-content">
-      <div class="step-title">Ver recomendaciones</div>
+      <div class="step-title">Ver recomendaciones nutricionales</div>
       <div class="step-sub">Elegí en base a tus objetivos</div>
+
       <div class="objective-grid">
-        <div class="objective-card" onclick="selectNutObj(this,'deficit','🔥 Perder peso')"><div class="obj-icon">🔥</div><div class="obj-label">Perder peso</div></div>
-        <div class="objective-card" onclick="selectNutObj(this,'mantenimiento','⚖️ Mantenerme')"><div class="obj-icon">⚖️</div><div class="obj-label">Mantenerme</div></div>
-        <div class="objective-card" onclick="selectNutObj(this,'volumen','💪 Ganar músculo')"><div class="obj-icon">💪</div><div class="obj-label">Ganar músculo</div></div>
-        <div class="objective-card" onclick="selectNutObj(this,'rendimiento','⚡ Rendimiento')"><div class="obj-icon">⚡</div><div class="obj-label">Rendimiento</div></div>
+        <div class="objective-card" onclick="selectNutObj(this, 'deficit', '🔥 Perder peso')">
+          <div class="obj-icon">🔥</div>
+          <div class="obj-label">Perder peso</div>
+        </div>
+        <div class="objective-card" onclick="selectNutObj(this, 'mantenimiento', '⚖️ Mantenerme')">
+          <div class="obj-icon">⚖️</div>
+          <div class="obj-label">Mantenerme</div>
+        </div>
+        <div class="objective-card" onclick="selectNutObj(this, 'volumen', '💪 Ganar músculo')">
+          <div class="obj-icon">💪</div>
+          <div class="obj-label">Ganar músculo</div>
+        </div>
+        <div class="objective-card" onclick="selectNutObj(this, 'rendimiento', '⚡ Rendimiento')">
+          <div class="obj-icon">⚡</div>
+          <div class="obj-label">Rendimiento</div>
+        </div>
       </div>
-      <div style="font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:var(--white); margin:8px 0 12px;">Dietas recomendadas</div>
-      <div class="diet-card" onclick="goto('nutrition-detail','Mediterránea')">
-        <div class="diet-card-header"><div class="diet-name">🫒 Mediterránea</div><div class="diet-cal">1.800 kcal</div></div>
+
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:var(--white); margin: 8px 0 12px;">Dietas recomendadas</div>
+
+      <div class="diet-card" onclick="goto('nutrition-detail', 'Mediterránea')">
+        <div class="diet-card-header">
+          <div class="diet-name">🫒 Mediterránea</div>
+          <div class="diet-cal">1.800 kcal</div>
+        </div>
         <div class="diet-desc">Vegetales, aceite de oliva, proteínas magras y cereales integrales.</div>
-        <div class="diet-macros"><div class="macro"><div class="macro-val">45%</div><div class="macro-label">Carbos</div></div><div class="macro"><div class="macro-val">30%</div><div class="macro-label">Proteína</div></div><div class="macro"><div class="macro-val">25%</div><div class="macro-label">Grasas</div></div></div>
+        <div class="diet-macros">
+          <div class="macro"><div class="macro-val">45%</div><div class="macro-label">Carbos</div></div>
+          <div class="macro"><div class="macro-val">30%</div><div class="macro-label">Proteína</div></div>
+          <div class="macro"><div class="macro-val">25%</div><div class="macro-label">Grasas</div></div>
+        </div>
       </div>
-      <div class="diet-card" onclick="goto('nutrition-detail','Alta en proteínas')">
-        <div class="diet-card-header"><div class="diet-name">🥩 Alta en proteínas</div><div class="diet-cal">2.200 kcal</div></div>
+
+      <div class="diet-card" onclick="goto('nutrition-detail', 'Alta en proteínas')">
+        <div class="diet-card-header">
+          <div class="diet-name">🥩 Alta en proteínas</div>
+          <div class="diet-cal">2.200 kcal</div>
+        </div>
         <div class="diet-desc">Maximiza la síntesis muscular con alta ingesta proteica.</div>
-        <div class="diet-macros"><div class="macro"><div class="macro-val">35%</div><div class="macro-label">Carbos</div></div><div class="macro"><div class="macro-val">45%</div><div class="macro-label">Proteína</div></div><div class="macro"><div class="macro-val">20%</div><div class="macro-label">Grasas</div></div></div>
+        <div class="diet-macros">
+          <div class="macro"><div class="macro-val">35%</div><div class="macro-label">Carbos</div></div>
+          <div class="macro"><div class="macro-val">45%</div><div class="macro-label">Proteína</div></div>
+          <div class="macro"><div class="macro-val">20%</div><div class="macro-label">Grasas</div></div>
+        </div>
       </div>
-      <div class="diet-card" onclick="goto('nutrition-detail','Plant-based')">
-        <div class="diet-card-header"><div class="diet-name">🌱 Plant-based</div><div class="diet-cal">1.600 kcal</div></div>
+
+      <div class="diet-card" onclick="goto('nutrition-detail', 'Plant-based')">
+        <div class="diet-card-header">
+          <div class="diet-name">🌱 Plant-based</div>
+          <div class="diet-cal">1.600 kcal</div>
+        </div>
         <div class="diet-desc">100% de origen vegetal. Legumbres, tofu y proteínas vegetales.</div>
-        <div class="diet-macros"><div class="macro"><div class="macro-val">55%</div><div class="macro-label">Carbos</div></div><div class="macro"><div class="macro-val">25%</div><div class="macro-label">Proteína</div></div><div class="macro"><div class="macro-val">20%</div><div class="macro-label">Grasas</div></div></div>
+        <div class="diet-macros">
+          <div class="macro"><div class="macro-val">55%</div><div class="macro-label">Carbos</div></div>
+          <div class="macro"><div class="macro-val">25%</div><div class="macro-label">Proteína</div></div>
+          <div class="macro"><div class="macro-val">20%</div><div class="macro-label">Grasas</div></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- NUTRITION DETAIL -->
+  <!-- NUTRICION DETAIL -->
   <div class="screen" id="screen-nutrition-detail">
-    <div class="step-trail"><span>Recomendaciones</span><span class="sep">›</span><span class="current">Dieta detallada</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Recomendaciones</span><span class="sep">›</span><span>Objetivo</span><span class="sep">›</span><span class="current">Dieta detallada</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('nutrition')">←</button>
       <div class="top-nav-title" id="diet-detail-title">Mediterránea</div>
       <div style="width:36px;"></div>
     </div>
     <div class="screen-content">
+      <div class="step-title">Consultar dieta detallada</div>
+      <div class="step-sub">Con alimentación sugerida para el día</div>
+
       <div style="background:rgba(232,255,71,0.08); border:1px solid rgba(232,255,71,0.2); border-radius:var(--radius); padding:16px; margin-bottom:20px;">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <div><div style="font-size:12px; color:var(--gray); margin-bottom:4px;">Calorías diarias</div><div style="font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; color:var(--yellow);" id="diet-detail-cal">1.800 kcal</div></div>
+          <div>
+            <div style="font-size:12px; color:var(--gray); margin-bottom:4px;">Calorías diarias</div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; color:var(--yellow);" id="diet-detail-cal">1.800 kcal</div>
+          </div>
           <div style="font-size:36px;" id="diet-detail-emoji">🫒</div>
         </div>
       </div>
+
       <div style="font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:var(--white); margin-bottom:12px;">Alimentación sugerida</div>
-      <div class="meal-row"><div class="meal-time">🌅 Desayuno (07:30)</div><div class="meal-desc">Avena con frutas y proteína en polvo · Tostada con palta y huevo</div></div>
-      <div class="meal-row"><div class="meal-time">🍎 Media mañana (10:30)</div><div class="meal-desc">Yogur griego con almendras y miel</div></div>
-      <div class="meal-row"><div class="meal-time">☀️ Almuerzo (13:00)</div><div class="meal-desc">Pollo grillado con quinoa y vegetales asados · Ensalada verde</div></div>
-      <div class="meal-row"><div class="meal-time">🥤 Merienda (17:00)</div><div class="meal-desc">Batido proteico con banana y mantequilla de maní</div></div>
-      <div class="meal-row"><div class="meal-time">🌙 Cena (20:30)</div><div class="meal-desc">Salmón con batata al horno y espinaca salteada</div></div>
+
+      <div class="meal-row">
+        <div class="meal-time">🌅 Desayuno (07:30)</div>
+        <div class="meal-desc">Avena con frutas y proteína en polvo · Tostada con palta y huevo</div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">🍎 Media mañana (10:30)</div>
+        <div class="meal-desc">Yogur griego con almendras y miel</div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">☀️ Almuerzo (13:00)</div>
+        <div class="meal-desc">Pollo grillado con quinoa y vegetales asados · Ensalada verde</div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">🥤 Merienda (17:00)</div>
+        <div class="meal-desc">Batido proteico con banana y mantequilla de maní</div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">🌙 Cena (20:30)</div>
+        <div class="meal-desc">Salmón con batata al horno y espinaca salteada</div>
+      </div>
+
       <div style="margin-top:24px;">
         <button class="btn-primary" onclick="goto('home'); showAlert('Plan nutricional guardado', 'success')">Guardar este plan</button>
         <button class="btn-secondary" onclick="goto('nutrition')">Volver a recomendaciones</button>
@@ -744,6 +950,7 @@
 
   <!-- PUNTOS VIDA CHECK -->
   <div class="screen" id="screen-puntos-vida-check">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div class="step-trail"><span class="current">¿Ver saldo o beneficios?</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('home')">←</button>
@@ -752,42 +959,94 @@
     </div>
     <div class="screen-content" style="display:flex; flex-direction:column; justify-content:center;">
       <div class="step-title" style="text-align:center;">¿Qué querés hacer?</div>
-      <div class="step-sub" style="text-align:center;">Consultá tu saldo o canjea beneficios</div>
-      <div class="choice-card" onclick="goto('puntos-saldo')"><div class="choice-card-icon">💰</div><div class="choice-card-info"><div class="choice-card-title">Saldo</div><div class="choice-card-sub">Consultar puntos y vía de obtención</div></div><div class="choice-card-arrow">→</div></div>
-      <div class="choice-card" onclick="goto('puntos-beneficios')"><div class="choice-card-icon">🎁</div><div class="choice-card-info"><div class="choice-card-title">Beneficios</div><div class="choice-card-sub">Canjear puntos por premios</div></div><div class="choice-card-arrow">→</div></div>
+      <div class="step-sub" style="text-align:center;">Elegí entre consultar tu saldo o canjear beneficios</div>
+
+      <div class="choice-card" onclick="goto('puntos-saldo')">
+        <div class="choice-card-icon">💰</div>
+        <div class="choice-card-info">
+          <div class="choice-card-title">Saldo</div>
+          <div class="choice-card-sub">Consultar puntos y vía de obtención</div>
+        </div>
+        <div class="choice-card-arrow">→</div>
+      </div>
+
+      <div class="choice-card" onclick="goto('puntos-beneficios')">
+        <div class="choice-card-icon">🎁</div>
+        <div class="choice-card-info">
+          <div class="choice-card-title">Beneficios</div>
+          <div class="choice-card-sub">Canjear puntos por premios</div>
+        </div>
+        <div class="choice-card-arrow">→</div>
+      </div>
     </div>
   </div>
 
   <!-- PUNTOS SALDO -->
   <div class="screen" id="screen-puntos-saldo">
-    <div class="step-trail"><span>Puntos Vida</span><span class="sep">›</span><span class="current">Saldo + vía de obtención</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Puntos Vida</span><span class="sep">›</span><span class="current">Consultar saldo + vía de obtención</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('puntos-vida-check')">←</button>
       <div class="top-nav-title">Saldo</div>
       <div style="width:36px;"></div>
     </div>
+
     <div class="points-hero">
       <div class="points-label">Saldo de puntos</div>
       <div class="points-value" id="display-points-saldo">2.450</div>
       <div class="points-sub">Equivalen a $2.450 en beneficios</div>
     </div>
+
     <div class="screen-content" style="padding-top:0;">
-      <div style="font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:var(--white); margin-bottom:12px;">Vía de obtención</div>
+      <div style="font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:var(--white); margin-bottom:12px;">Vía de obtención (objetivos)</div>
+
       <div class="obtencion-list">
-        <div class="obtencion-item"><div><div class="obtencion-label">✅ Ir al gimnasio</div><div style="font-size:11px; color:var(--gray); margin-top:2px;">Por cada visita registrada</div></div><div class="obtencion-value">+10 pts</div></div>
-        <div class="obtencion-item"><div><div class="obtencion-label">🎥 Completar clase virtual</div><div style="font-size:11px; color:var(--gray); margin-top:2px;">Por clase finalizada</div></div><div class="obtencion-value">+20 pts</div></div>
-        <div class="obtencion-item"><div><div class="obtencion-label">💪 Completar rutina</div><div style="font-size:11px; color:var(--gray); margin-top:2px;">Por rutina finalizada</div></div><div class="obtencion-value">+15 pts</div></div>
-        <div class="obtencion-item"><div><div class="obtencion-label">🎯 Objetivo semanal</div><div style="font-size:11px; color:var(--gray); margin-top:2px;">Por semana completa</div></div><div class="obtencion-value">+50 pts</div></div>
-        <div class="obtencion-item"><div><div class="obtencion-label">👥 Referir un amigo</div><div style="font-size:11px; color:var(--gray); margin-top:2px;">Cuando se suscribe</div></div><div class="obtencion-value">+100 pts</div></div>
+        <div class="obtencion-item">
+          <div>
+            <div class="obtencion-label">✅ Ir al gimnasio</div>
+            <div style="font-size:11px; color:var(--gray); margin-top:2px;">Por cada visita registrada</div>
+          </div>
+          <div class="obtencion-value">+10 pts</div>
+        </div>
+        <div class="obtencion-item">
+          <div>
+            <div class="obtencion-label">🎥 Completar clase virtual</div>
+            <div style="font-size:11px; color:var(--gray); margin-top:2px;">Por clase finalizada</div>
+          </div>
+          <div class="obtencion-value">+20 pts</div>
+        </div>
+        <div class="obtencion-item">
+          <div>
+            <div class="obtencion-label">💪 Completar rutina</div>
+            <div style="font-size:11px; color:var(--gray); margin-top:2px;">Por rutina finalizada</div>
+          </div>
+          <div class="obtencion-value">+15 pts</div>
+        </div>
+        <div class="obtencion-item">
+          <div>
+            <div class="obtencion-label">🎯 Cumplir objetivo semanal</div>
+            <div style="font-size:11px; color:var(--gray); margin-top:2px;">Por semana completa</div>
+          </div>
+          <div class="obtencion-value">+50 pts</div>
+        </div>
+        <div class="obtencion-item">
+          <div>
+            <div class="obtencion-label">👥 Referir un amigo</div>
+            <div style="font-size:11px; color:var(--gray); margin-top:2px;">Cuando se suscribe</div>
+          </div>
+          <div class="obtencion-value">+100 pts</div>
+        </div>
       </div>
+
       <button class="btn-secondary" onclick="goto('puntos-beneficios')">Ver beneficios disponibles →</button>
     </div>
   </div>
 
   <!-- PUNTOS BENEFICIOS -->
   <div class="screen" id="screen-puntos-beneficios">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div class="points-saldo-corner" id="display-points-corner">2.450 pts</div>
-    <div class="step-trail"><span>Puntos</span><span class="sep">›</span><span class="current">Beneficios</span><span class="sep">›</span><span>¿Confirmar?</span></div>
+    <div class="step-trail"><span>Puntos Vida</span><span class="sep">›</span><span class="current">Lista de beneficios</span><span class="sep">›</span><span>Seleccionar</span><span class="sep">›</span><span>¿Confirmar canje?</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('puntos-vida-check')">←</button>
       <div class="top-nav-title">Beneficios</div>
@@ -796,25 +1055,74 @@
     <div class="screen-content">
       <div class="step-title">Ver lista de beneficios</div>
       <div class="step-sub">Seleccioná un beneficio para canjear</div>
-      <div class="benefit-card" onclick="selectBeneficio('🧴 Proteína en polvo (1kg)', 1500)"><div class="benefit-icon-wrap">🧴</div><div class="benefit-info"><div class="benefit-name">Proteína en polvo (1kg)</div><div class="benefit-desc">Whey protein vainilla o chocolate</div></div><div class="benefit-cost">1.500 pts</div></div>
-      <div class="benefit-card" onclick="selectBeneficio('👕 Remera Vida Activa', 800)"><div class="benefit-icon-wrap">👕</div><div class="benefit-info"><div class="benefit-name">Remera Vida Activa</div><div class="benefit-desc">Talle a elección</div></div><div class="benefit-cost">800 pts</div></div>
-      <div class="benefit-card" onclick="selectBeneficio('🥤 Botella de agua', 400)"><div class="benefit-icon-wrap">🥤</div><div class="benefit-info"><div class="benefit-name">Botella de agua</div><div class="benefit-desc">Acero inoxidable 750ml</div></div><div class="benefit-cost">400 pts</div></div>
-      <div class="benefit-card" onclick="selectBeneficio('🎟️ 1 mes gratis', 5000)"><div class="benefit-icon-wrap">🎟️</div><div class="benefit-info"><div class="benefit-name">1 mes gratis</div><div class="benefit-desc">Extensión de suscripción</div></div><div class="benefit-cost">5.000 pts</div></div>
+
+      <div class="benefit-card" onclick="selectBeneficio('🧴 Proteína en polvo (1kg)', 1500)">
+        <div class="benefit-icon-wrap">🧴</div>
+        <div class="benefit-info">
+          <div class="benefit-name">Proteína en polvo (1kg)</div>
+          <div class="benefit-desc">Whey protein vainilla o chocolate</div>
+        </div>
+        <div class="benefit-cost">1.500 pts</div>
+      </div>
+
+      <div class="benefit-card" onclick="selectBeneficio('👕 Remera FitLife', 800)">
+        <div class="benefit-icon-wrap">👕</div>
+        <div class="benefit-info">
+          <div class="benefit-name">Remera FitLife</div>
+          <div class="benefit-desc">Talle a elección</div>
+        </div>
+        <div class="benefit-cost">800 pts</div>
+      </div>
+
+      <div class="benefit-card" onclick="selectBeneficio('🥤 Botella de agua', 400)">
+        <div class="benefit-icon-wrap">🥤</div>
+        <div class="benefit-info">
+          <div class="benefit-name">Botella de agua</div>
+          <div class="benefit-desc">Acero inoxidable 750ml</div>
+        </div>
+        <div class="benefit-cost">400 pts</div>
+      </div>
+
+      <div class="benefit-card" onclick="selectBeneficio('🎟️ 1 mes gratis', 5000)">
+        <div class="benefit-icon-wrap">🎟️</div>
+        <div class="benefit-info">
+          <div class="benefit-name">1 mes gratis</div>
+          <div class="benefit-desc">Extensión de suscripción</div>
+        </div>
+        <div class="benefit-cost">5.000 pts</div>
+      </div>
     </div>
   </div>
 
   <!-- CANJE CHECK -->
   <div class="screen" id="screen-canje-check">
-    <div class="step-trail"><span>Beneficios</span><span class="sep">›</span><span class="current">¿Confirmar canje?</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Beneficios</span><span class="sep">›</span><span>Seleccionado</span><span class="sep">›</span><span class="current">¿Confirmar canje?</span></div>
     <div class="decision-screen">
-      <div class="decision-diamond"><div class="decision-diamond-inner"><div class="q-icon">🎁</div><div class="q-text">¿Confirmar<br>canje?</div></div></div>
-      <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:16px; width:100%;">
-        <div style="font-size:14px; color:var(--white); font-weight:700; margin-bottom:12px; text-align:center;" id="canje-item-name">Proteína</div>
-        <div style="display:flex; justify-content:space-between; margin-bottom:6px;"><span style="color:var(--gray); font-size:13px;">Tus puntos</span><span style="color:var(--yellow); font-weight:700;" id="canje-saldo">2.450 pts</span></div>
-        <div style="display:flex; justify-content:space-between; margin-bottom:6px;"><span style="color:var(--gray); font-size:13px;">Costo</span><span style="color:var(--white); font-weight:700;" id="canje-cost">- 1.500 pts</span></div>
-        <div style="height:1px; background:rgba(255,255,255,0.1); margin:10px 0;"></div>
-        <div style="display:flex; justify-content:space-between;"><span style="color:var(--gray); font-size:13px;">Quedarán</span><span style="color:var(--green-accent); font-weight:700;" id="canje-restante">950 pts</span></div>
+      <div class="decision-diamond">
+        <div class="decision-diamond-inner">
+          <div class="q-icon">🎁</div>
+          <div class="q-text">¿Confirmar<br>canje?</div>
+        </div>
       </div>
+
+      <div style="background:rgba(255,255,255,0.05); border-radius:10px; padding:16px; width:100%;">
+        <div style="font-size:14px; color:var(--white); font-weight:700; margin-bottom:12px; text-align:center;" id="canje-item-name">Proteína en polvo (1kg)</div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <span style="color:var(--gray); font-size:13px;">Tus puntos</span>
+          <span style="color:var(--yellow); font-weight:700;" id="canje-saldo">2.450 pts</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+          <span style="color:var(--gray); font-size:13px;">Costo</span>
+          <span style="color:var(--white); font-weight:700;" id="canje-cost">- 1.500 pts</span>
+        </div>
+        <div style="height:1px; background:rgba(255,255,255,0.1); margin:10px 0;"></div>
+        <div style="display:flex; justify-content:space-between;">
+          <span style="color:var(--gray); font-size:13px;">Quedarán</span>
+          <span style="color:var(--green-accent); font-weight:700;" id="canje-restante">950 pts</span>
+        </div>
+      </div>
+
       <div class="decision-actions">
         <button class="btn-danger" onclick="cancelarCanje()" style="margin-top:0;">No, cancelar</button>
         <button class="btn-primary" onclick="confirmarCanje()">Sí, confirmar</button>
@@ -824,12 +1132,13 @@
 
   <!-- CANJE EXITOSO -->
   <div class="screen" id="screen-canje-exitoso">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div class="granted-screen">
       <div class="granted-icon">🎉</div>
       <div class="granted-title">¡Canje exitoso!</div>
       <div class="granted-sub">Descontamos los puntos y recibirás tu beneficio en breve.</div>
       <div style="background:rgba(232,255,71,0.08); border:1px solid rgba(232,255,71,0.2); border-radius:var(--radius-sm); padding:14px; margin-top:16px; width:100%;">
-        <div style="font-size:13px; color:var(--white);" id="exito-canje-item">Proteína</div>
+        <div style="font-size:13px; color:var(--white);" id="exito-canje-item">Proteína en polvo (1kg)</div>
         <div style="font-size:12px; color:var(--gray); margin-top:4px;">Código: <span class="text-yellow" id="exito-canje-code">FL-2026-A4B7</span></div>
       </div>
       <button class="btn-primary" onclick="goto('home')" style="margin-top:16px;">Volver al inicio</button>
@@ -837,45 +1146,25 @@
     </div>
   </div>
 
-  <!-- SUSCRIPCION -->
-  <div class="screen" id="screen-subscription">
-    <div class="top-nav">
-      <button class="back-btn" onclick="goto('home')">←</button>
-      <div class="top-nav-title">Suscripción</div>
-      <div style="width:36px;"></div>
-    </div>
-    <div class="screen-content">
-      <div class="step-title">Mi suscripción</div>
-      <div class="step-sub">Estado y detalles de tu plan</div>
-      <div class="plan-card selected" style="margin-top:16px;">
-        <div class="plan-name" id="sub-plan-name">Premium</div>
-        <div style="display:flex; justify-content:space-between; margin-top:8px;"><div style="font-size:13px; color:var(--gray);">Estado</div><div style="font-weight:700; color:var(--yellow);">Activa</div></div>
-        <div style="display:flex; justify-content:space-between; margin-top:8px;"><div style="font-size:13px; color:var(--gray);">Método</div><div style="font-weight:700; color:var(--white);">Tarjeta Visa</div></div>
-        <div style="display:flex; justify-content:space-between; margin-top:8px;"><div style="font-size:13px; color:var(--gray);">Vence en</div><div style="font-weight:700; color:var(--yellow);">12 días</div></div>
-      </div>
-      <div style="margin-top:18px; display:flex; gap:12px;">
-        <button class="btn-primary" onclick="goto('payment-method')">Renovar / Cambiar pago</button>
-        <button class="btn-secondary" onclick="showAlert('Recordatorio enviado', 'success')">Recordatorio</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- CLASES -->
+  <!-- CLASSES -->
   <div class="screen" id="screen-classes">
-    <div class="step-trail"><span class="current">Catálogo</span><span class="sep">›</span><span>Filtrar</span><span class="sep">›</span><span>Seleccionar</span><span class="sep">›</span><span>¿Inscribirse?</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span class="current">Ver catálogo</span><span class="sep">›</span><span>Filtrar</span><span class="sep">›</span><span>Seleccionar</span><span class="sep">›</span><span>¿Inscribirse?</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('home')">←</button>
       <div class="top-nav-title">Clases</div>
       <div style="width:36px;"></div>
     </div>
     <div class="screen-content">
-      <div class="step-title">Catálogo de clases</div>
-      <div class="step-sub">Virtuales o presenciales — filtrá por categoría</div>
+      <div class="step-title">Ver catálogo de clases</div>
+      <div class="step-sub">Virtuales o presenciales — Filtrá por categoría/nivel (opcional)</div>
+
       <div style="display:flex; gap:8px; margin-bottom:12px;">
-        <button class="filter-chip active" onclick="filterTipo(this,'todas')">Todas</button>
-        <button class="filter-chip" onclick="filterTipo(this,'virtual')">🎥 Virtuales</button>
-        <button class="filter-chip" onclick="filterTipo(this,'presencial')">📍 Presenciales</button>
+        <button class="filter-chip active" onclick="filterTipo(this, 'todas')">Todas</button>
+        <button class="filter-chip" onclick="filterTipo(this, 'virtual')">🎥 Virtuales</button>
+        <button class="filter-chip" onclick="filterTipo(this, 'presencial')">📍 Presenciales</button>
       </div>
+
       <div class="filter-row">
         <button class="filter-chip active" onclick="filterCat(this)">Todas</button>
         <button class="filter-chip" onclick="filterCat(this)">Fuerza</button>
@@ -885,28 +1174,73 @@
         <button class="filter-chip" onclick="filterCat(this)">Principiante</button>
         <button class="filter-chip" onclick="filterCat(this)">Avanzado</button>
       </div>
-      <div class="class-card" onclick="goto('class-detail','Full Body HIIT|HIIT|Virtual|45 min|Intermedio|🔥')">
-        <div class="class-thumb" style="background:linear-gradient(135deg,#1A3A2A,#2D5A3D);">🔥<div class="class-tipo-badge">🎥 Virtual</div><div class="class-badge">HIIT</div></div>
-        <div class="class-body"><div class="class-name">Full Body HIIT</div><div class="class-meta"><div class="class-meta-item">⏱ 45 min</div><div class="class-meta-item">📊 Intermedio</div><div class="class-meta-item">👤 12 insc.</div></div></div>
+
+      <div class="class-card" onclick="goto('class-detail', 'Full Body HIIT|HIIT|Virtual|45 min|Intermedio|🔥')">
+        <div class="class-thumb" style="background: linear-gradient(135deg, #1A3A2A, #2D5A3D);">🔥
+          <div class="class-tipo-badge">🎥 Virtual</div>
+          <div class="class-badge">HIIT</div>
+        </div>
+        <div class="class-body">
+          <div class="class-name">Full Body HIIT</div>
+          <div class="class-meta">
+            <div class="class-meta-item">⏱ 45 min</div>
+            <div class="class-meta-item">📊 Intermedio</div>
+            <div class="class-meta-item">👤 12 insc.</div>
+          </div>
+        </div>
       </div>
-      <div class="class-card" onclick="goto('class-detail','Yoga Restore|Yoga|Presencial|60 min|Principiante|🧘')">
-        <div class="class-thumb" style="background:linear-gradient(135deg,#1A2A3A,#2D3A5A);">🧘<div class="class-tipo-badge">📍 Presencial</div><div class="class-badge">Yoga</div></div>
-        <div class="class-body"><div class="class-name">Yoga Restore</div><div class="class-meta"><div class="class-meta-item">⏱ 60 min</div><div class="class-meta-item">📊 Principiante</div><div class="class-meta-item">👤 8 insc.</div></div></div>
+
+      <div class="class-card" onclick="goto('class-detail', 'Yoga Restore|Yoga|Presencial|60 min|Principiante|🧘')">
+        <div class="class-thumb" style="background: linear-gradient(135deg, #1A2A3A, #2D3A5A);">🧘
+          <div class="class-tipo-badge">📍 Presencial</div>
+          <div class="class-badge">Yoga</div>
+        </div>
+        <div class="class-body">
+          <div class="class-name">Yoga Restore</div>
+          <div class="class-meta">
+            <div class="class-meta-item">⏱ 60 min</div>
+            <div class="class-meta-item">📊 Principiante</div>
+            <div class="class-meta-item">👤 8 insc.</div>
+          </div>
+        </div>
       </div>
-      <div class="class-card" onclick="goto('class-detail','Strength & Power|Fuerza|Presencial|50 min|Avanzado|💪')">
-        <div class="class-thumb" style="background:linear-gradient(135deg,#2A1A1A,#5A2D2D);">💪<div class="class-tipo-badge">📍 Presencial</div><div class="class-badge">Fuerza</div></div>
-        <div class="class-body"><div class="class-name">Strength & Power</div><div class="class-meta"><div class="class-meta-item">⏱ 50 min</div><div class="class-meta-item">📊 Avanzado</div><div class="class-meta-item">👤 5 insc.</div></div></div>
+
+      <div class="class-card" onclick="goto('class-detail', 'Strength & Power|Fuerza|Presencial|50 min|Avanzado|💪')">
+        <div class="class-thumb" style="background: linear-gradient(135deg, #2A1A1A, #5A2D2D);">💪
+          <div class="class-tipo-badge">📍 Presencial</div>
+          <div class="class-badge">Fuerza</div>
+        </div>
+        <div class="class-body">
+          <div class="class-name">Strength & Power</div>
+          <div class="class-meta">
+            <div class="class-meta-item">⏱ 50 min</div>
+            <div class="class-meta-item">📊 Avanzado</div>
+            <div class="class-meta-item">👤 5 insc.</div>
+          </div>
+        </div>
       </div>
-      <div class="class-card" onclick="goto('class-detail','Cardio Dance|Cardio|Virtual|40 min|Principiante|💃')">
-        <div class="class-thumb" style="background:linear-gradient(135deg,#2A1A3A,#4A2D5A);">💃<div class="class-tipo-badge">🎥 Virtual</div><div class="class-badge">Cardio</div></div>
-        <div class="class-body"><div class="class-name">Cardio Dance</div><div class="class-meta"><div class="class-meta-item">⏱ 40 min</div><div class="class-meta-item">📊 Principiante</div><div class="class-meta-item">👤 20 insc.</div></div></div>
+
+      <div class="class-card" onclick="goto('class-detail', 'Cardio Dance|Cardio|Virtual|40 min|Principiante|💃')">
+        <div class="class-thumb" style="background: linear-gradient(135deg, #2A1A3A, #4A2D5A);">💃
+          <div class="class-tipo-badge">🎥 Virtual</div>
+          <div class="class-badge">Cardio</div>
+        </div>
+        <div class="class-body">
+          <div class="class-name">Cardio Dance</div>
+          <div class="class-meta">
+            <div class="class-meta-item">⏱ 40 min</div>
+            <div class="class-meta-item">📊 Principiante</div>
+            <div class="class-meta-item">👤 20 insc.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- CLASS DETAIL -->
   <div class="screen" id="screen-class-detail">
-    <div class="step-trail"><span>Catálogo</span><span class="sep">›</span><span class="current">Clase</span><span class="sep">›</span><span>¿Inscribirse?</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Catálogo</span><span class="sep">›</span><span class="current">Clase seleccionada</span><span class="sep">›</span><span>¿Inscribirse?</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('classes')">←</button>
       <div class="top-nav-title" id="cd-name">Full Body HIIT</div>
@@ -914,22 +1248,33 @@
     </div>
     <div class="screen-content">
       <div class="class-detail-hero" id="cd-hero">🔥</div>
+
       <div class="class-detail-meta">
         <span class="yellow" id="cd-cat">HIIT</span>
         <span id="cd-tipo">🎥 Virtual</span>
         <span id="cd-dur">⏱ 45 min</span>
         <span id="cd-nivel">📊 Intermedio</span>
       </div>
-      <p style="color:var(--gray); font-size:14px; line-height:1.6; margin-bottom:24px;">Clase de alta intensidad. Trabajo full body con intervalos cortos de máxima exigencia y descansos activos.</p>
+
+      <p style="color:var(--gray); font-size:14px; line-height:1.6; margin-bottom:24px;">
+        Clase de alta intensidad. Trabajo full body con intervalos cortos de máxima exigencia y descansos activos.
+      </p>
+
       <button class="btn-primary" onclick="goto('inscribirse-check')">Continuar →</button>
     </div>
   </div>
 
-  <!-- INSCRIBIRSE CHECK -->
+  <!-- INSCRIBIRSE -->
   <div class="screen" id="screen-inscribirse-check">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div class="step-trail"><span>Clase</span><span class="sep">›</span><span class="current">¿Inscribirse?</span></div>
     <div class="decision-screen">
-      <div class="decision-diamond"><div class="decision-diamond-inner"><div class="q-icon">📝</div><div class="q-text">¿Desea<br>inscribirse?</div></div></div>
+      <div class="decision-diamond">
+        <div class="decision-diamond-inner">
+          <div class="q-icon">📝</div>
+          <div class="q-text">¿Desea<br>inscribirse?</div>
+        </div>
+      </div>
       <div class="decision-context">¿Querés inscribirte a <span class="text-yellow" id="inscribirse-class-name">Full Body HIIT</span>?</div>
       <div class="decision-actions">
         <button class="btn-danger" onclick="goto('volver-salir-check')" style="margin-top:0;">No</button>
@@ -940,7 +1285,8 @@
 
   <!-- HORARIO -->
   <div class="screen" id="screen-horario">
-    <div class="step-trail"><span>Inscribirse</span><span class="sep">›</span><span class="current">Elegir horario</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Inscribirse</span><span class="sep">›</span><span class="current">Elegir día y horario</span><span class="sep">›</span><span>Confirmar</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('inscribirse-check')">←</button>
       <div class="top-nav-title">Día y horario</div>
@@ -949,6 +1295,7 @@
     <div class="screen-content">
       <div class="step-title">Elegir día y horario</div>
       <div class="step-sub">Disponibles para los próximos 7 días</div>
+
       <div class="horario-grid">
         <div class="horario-chip" onclick="selectHorarioChip(this)">Lun 07:00</div>
         <div class="horario-chip" onclick="selectHorarioChip(this)">Lun 19:00</div>
@@ -963,12 +1310,14 @@
         <div class="horario-chip" onclick="selectHorarioChip(this)">Sáb 10:00</div>
         <div class="horario-chip" onclick="selectHorarioChip(this)">Sáb 11:00</div>
       </div>
+
       <button class="btn-primary" id="btn-ir-inscripcion" onclick="goto('proceso-inscripcion')" style="opacity:0.5; pointer-events:none;">Ir al proceso de inscripción →</button>
     </div>
   </div>
 
   <!-- PROCESO INSCRIPCION -->
   <div class="screen" id="screen-proceso-inscripcion">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div class="step-trail"><span>Horario</span><span class="sep">›</span><span class="current">Confirmar reserva</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('horario')">←</button>
@@ -976,15 +1325,20 @@
       <div style="width:36px;"></div>
     </div>
     <div class="screen-content">
-      <div class="step-title">Confirmar inscripción</div>
+      <div class="step-title">Proceso de inscripción</div>
+      <div class="step-sub">Revisá los datos antes de confirmar</div>
+
       <div style="background:rgba(255,255,255,0.05); border-radius:var(--radius); padding:18px; margin-bottom:20px;">
         <div style="font-size:12px; color:var(--gray); margin-bottom:4px;">Clase</div>
         <div style="font-size:16px; font-weight:700; color:var(--white); margin-bottom:12px;" id="conf-class">Full Body HIIT</div>
+
         <div style="font-size:12px; color:var(--gray); margin-bottom:4px;">Día y horario</div>
         <div style="font-size:16px; font-weight:700; color:var(--yellow); margin-bottom:12px;" id="conf-horario">Lun 19:00</div>
+
         <div style="font-size:12px; color:var(--gray); margin-bottom:4px;">Duración</div>
         <div style="font-size:14px; color:var(--white);" id="conf-dur">45 min</div>
       </div>
+
       <button class="btn-primary" onclick="confirmarReserva()">Confirmar reserva ✓</button>
       <button class="btn-secondary" onclick="goto('horario')">Cambiar horario</button>
     </div>
@@ -992,10 +1346,11 @@
 
   <!-- RESERVA CONFIRMADA -->
   <div class="screen" id="screen-reserva-confirmada">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div class="granted-screen">
       <div class="granted-icon">✓</div>
       <div class="granted-title">Reserva confirmada</div>
-      <div class="granted-sub">Te enviamos los detalles a tu mail.</div>
+      <div class="granted-sub">Te enviamos los detalles de la inscripción a tu mail.</div>
       <div style="background:rgba(232,255,71,0.08); border:1px solid rgba(232,255,71,0.2); border-radius:var(--radius-sm); padding:14px; margin-top:16px; width:100%;">
         <div style="font-size:13px; color:var(--white);" id="rc-class">Full Body HIIT</div>
         <div style="font-size:12px; color:var(--yellow); margin-top:4px;" id="rc-horario">Lun 19:00</div>
@@ -1004,11 +1359,18 @@
     </div>
   </div>
 
-  <!-- VOLVER SALIR CHECK -->
+  <!-- VOLVER SALIR -->
   <div class="screen" id="screen-volver-salir-check">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>No te inscribiste</span><span class="sep">›</span><span class="current">¿Volver al catálogo o salir?</span></div>
     <div class="decision-screen">
-      <div class="decision-diamond"><div class="decision-diamond-inner"><div class="q-icon">↩️</div><div class="q-text">¿Volver al<br>catálogo o<br>salir?</div></div></div>
-      <div class="decision-context">Decidiste no inscribirte</div>
+      <div class="decision-diamond">
+        <div class="decision-diamond-inner">
+          <div class="q-icon">↩️</div>
+          <div class="q-text">¿Volver al<br>catálogo o<br>salir?</div>
+        </div>
+      </div>
+      <div class="decision-context">Decidiste no inscribirte. ¿Qué querés hacer?</div>
       <div class="decision-actions">
         <button class="btn-secondary" onclick="goto('home')" style="margin-top:0;">Salir</button>
         <button class="btn-primary" onclick="goto('classes')">Volver al catálogo</button>
@@ -1016,79 +1378,122 @@
     </div>
   </div>
 
-  <!-- RUTINAS -->
+  <!-- ROUTINES -->
   <div class="screen" id="screen-routines">
-    <div class="step-trail"><span class="current">Rutinas personalizadas</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span class="current">Ver rutinas personalizadas</span><span class="sep">›</span><span>Elegir en base a objetivos</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('home')">←</button>
       <div class="top-nav-title">Rutinas</div>
       <div style="width:36px;"></div>
     </div>
     <div class="screen-content">
-      <div class="step-title">Rutinas personalizadas</div>
+      <div class="step-title">Ver rutinas personalizadas</div>
       <div class="step-sub">Elegí en base a tus objetivos</div>
+
       <div class="objective-grid">
-        <div class="objective-card" onclick="filterRoutine(this,'perder')"><div class="obj-icon">🔥</div><div class="obj-label">Perder peso</div></div>
-        <div class="objective-card selected" onclick="filterRoutine(this,'musculo')"><div class="obj-icon">💪</div><div class="obj-label">Ganar músculo</div></div>
-        <div class="objective-card" onclick="filterRoutine(this,'rendimiento')"><div class="obj-icon">⚡</div><div class="obj-label">Rendimiento</div></div>
-        <div class="objective-card" onclick="filterRoutine(this,'flexibilidad')"><div class="obj-icon">🧘</div><div class="obj-label">Flexibilidad</div></div>
+        <div class="objective-card" onclick="filterRoutine(this, 'perder')">
+          <div class="obj-icon">🔥</div>
+          <div class="obj-label">Perder peso</div>
+        </div>
+        <div class="objective-card selected" onclick="filterRoutine(this, 'musculo')">
+          <div class="obj-icon">💪</div>
+          <div class="obj-label">Ganar músculo</div>
+        </div>
+        <div class="objective-card" onclick="filterRoutine(this, 'rendimiento')">
+          <div class="obj-icon">⚡</div>
+          <div class="obj-label">Rendimiento</div>
+        </div>
+        <div class="objective-card" onclick="filterRoutine(this, 'flexibilidad')">
+          <div class="obj-icon">🧘</div>
+          <div class="obj-label">Flexibilidad</div>
+        </div>
       </div>
+
       <div class="routine-card" onclick="showAlert('Rutina iniciada 💪', 'success')">
-        <div class="routine-name">💪 Fuerza — Tren Superior</div><div class="routine-obj">Ganar músculo</div>
+        <div class="routine-name">💪 Fuerza — Tren Superior</div>
+        <div class="routine-obj">Ganar músculo</div>
         <div class="routine-exercises">Press de banca · Pull-ups · Remo · Curl de bíceps · 4 más</div>
         <div style="margin-top:10px; font-size:12px; color:var(--gray);">8 ejercicios · 45 min · Intermedio</div>
       </div>
+
       <div class="routine-card" onclick="showAlert('Rutina iniciada 🔥', 'success')">
-        <div class="routine-name">🔥 HIIT — 20 min</div><div class="routine-obj">Perder peso</div>
+        <div class="routine-name">🔥 HIIT — 20 min</div>
+        <div class="routine-obj">Perder peso</div>
         <div class="routine-exercises">Burpees · Saltos · Mountain climbers · Sprint · 2 más</div>
         <div style="margin-top:10px; font-size:12px; color:var(--gray);">6 ejercicios · 20 min · Avanzado</div>
       </div>
+
       <div class="routine-card" onclick="showAlert('Rutina iniciada 🧘', 'success')">
-        <div class="routine-name">🧘 Movilidad</div><div class="routine-obj">Flexibilidad</div>
+        <div class="routine-name">🧘 Movilidad</div>
+        <div class="routine-obj">Flexibilidad</div>
         <div class="routine-exercises">Estiramiento · Movilidad de cadera · Yoga flows · 4 más</div>
         <div style="margin-top:10px; font-size:12px; color:var(--gray);">7 ejercicios · 30 min · Principiante</div>
       </div>
     </div>
   </div>
 
-  <!-- QR BIO -->
+  <!-- QR BIO - ESCANEO FACIAL -->
   <div class="screen" id="screen-qr-bio">
-    <div class="step-trail"><span>Generar QR</span><span class="sep">›</span><span class="current">Verificación biométrica</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Generar QR</span><span class="sep">›</span><span class="current">Escaneo facial</span><span class="sep">›</span><span>QR</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('home')">←</button>
       <div class="top-nav-title">QR de acceso</div>
       <div style="width:36px;"></div>
     </div>
     <div class="screen-content" style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
-      <div class="step-title">Generar QR de acceso</div>
-      <div class="step-sub">Verificación biométrica del usuario</div>
-      <div class="bio-icon-big" id="bio-icon">👆</div>
-      <div id="bio-state-init">
-        <p style="color:var(--white); font-size:15px; font-weight:600; margin-bottom:20px;">Tocá para escanear tu huella</p>
-        <button class="btn-primary" onclick="startBio()" style="max-width:280px;">Iniciar verificación</button>
+      <div class="step-title">Verificación facial</div>
+      <div class="step-sub">Escaneo de rostro requerido para generar QR</div>
+
+      <div class="face-scan-frame" id="face-scan-frame">
+        <div class="corner c-tl"></div>
+        <div class="corner c-tr"></div>
+        <div class="corner c-bl"></div>
+        <div class="corner c-br"></div>
+        <div class="face-emoji" id="face-emoji">😊</div>
       </div>
+
+      <div id="bio-state-init">
+        <p style="color:var(--white); font-size:15px; font-weight:600; margin-bottom:20px;">Posicioná tu rostro frente a la cámara</p>
+        <button class="btn-primary" onclick="startBio()" style="max-width:280px;">Escanear rostro</button>
+      </div>
+
       <div id="bio-state-checking" style="display:none;">
-        <p style="color:var(--gray); font-size:14px;">Verificando...</p>
-        <div class="spinner" style="margin:16px auto; width:40px; height:40px; border-width:3px;"></div>
+        <p style="color:var(--gray); font-size:14px;">Escaneando rostro...</p>
+        <div class="spinner" style="margin: 16px auto; width:40px; height:40px; border-width:3px;"></div>
       </div>
     </div>
   </div>
 
-  <!-- QR X CHECK -->
+  <!-- QR BIO RESULT -->
   <div class="screen" id="screen-qr-x-check">
-    <div class="step-trail"><span>Bio</span><span class="sep">›</span><span class="current">Resultado</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Escaneo facial</span><span class="sep">›</span><span class="current">Resultado</span></div>
     <div class="decision-screen">
-      <div class="decision-diamond"><div class="decision-diamond-inner"><div class="q-icon">🔍</div><div class="q-text">¿Verificación<br>exitosa?</div></div></div>
-      <div class="decision-context">Procesando verificación biométrica...</div>
-      <div class="spinner" style="margin:0 auto;"></div>
+      <div class="decision-diamond">
+        <div class="decision-diamond-inner">
+          <div class="q-icon">🔍</div>
+          <div class="q-text">¿Rostro<br>reconocido?</div>
+        </div>
+      </div>
+      <div class="decision-context">Procesando reconocimiento facial...</div>
+      <div class="spinner" style="margin: 0 auto;"></div>
     </div>
   </div>
 
   <!-- QR REINTENTAR -->
   <div class="screen" id="screen-qr-reintentar">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Escaneo fallido</span><span class="sep">›</span><span class="current">¿Reintentar?</span></div>
     <div class="decision-screen">
-      <div class="decision-diamond" style="border-color:rgba(255,68,68,0.4); background:linear-gradient(135deg,rgba(255,68,68,0.15),rgba(255,68,68,0.05));"><div class="decision-diamond-inner"><div class="q-icon">❌</div><div class="q-text">¿Reintentar?</div></div></div>
-      <div class="decision-context">La verificación biométrica falló. ¿Querés intentar de nuevo?</div>
+      <div class="decision-diamond" style="border-color:rgba(255,68,68,0.4); background: linear-gradient(135deg, rgba(255,68,68,0.15), rgba(255,68,68,0.05));">
+        <div class="decision-diamond-inner">
+          <div class="q-icon">❌</div>
+          <div class="q-text">¿Reintentar?</div>
+        </div>
+      </div>
+      <div class="decision-context">El escaneo facial falló. ¿Querés intentar de nuevo?</div>
       <div class="decision-actions">
         <button class="btn-danger" onclick="goto('home')" style="margin-top:0;">No</button>
         <button class="btn-primary" onclick="goto('qr-bio')">Sí, reintentar</button>
@@ -1098,53 +1503,93 @@
 
   <!-- QR SHOW -->
   <div class="screen" id="screen-qr-show">
-    <div class="step-trail"><span>Bio exitosa</span><span class="sep">›</span><span class="current">QR</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Bio exitosa</span><span class="sep">›</span><span class="current">Mostrar QR</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('home')">←</button>
       <div class="top-nav-title">QR de acceso</div>
       <div style="width:36px;"></div>
     </div>
     <div class="screen-content" style="text-align:center;">
-      <div class="step-title" style="text-align:center;">Presentá este QR en la sede</div>
+      <div class="step-title" style="text-align:center;">Mostrar QR</div>
+      <div class="step-sub" style="text-align:center;">Presentá este código en el lector de la sede</div>
+
       <div class="qr-box"><div class="qr-inner"></div></div>
-      <div class="qr-timer"><div class="qr-timer-dot"></div><span>Válido por <span id="qr-countdown">5:00</span></span></div>
+
+      <div class="qr-timer">
+        <div class="qr-timer-dot"></div>
+        <span>Válido por <span id="qr-countdown">5:00</span></span>
+      </div>
+
+      <div class="qr-valid-badge">⏱ Válido por 5 minutos</div>
+
       <p style="color:var(--gray); font-size:12px; margin-top:24px;">El código expira automáticamente por seguridad</p>
     </div>
   </div>
 
   <!-- SEDES -->
   <div class="screen" id="screen-sedes">
-    <div class="step-trail"><span class="current">Mapa</span><span class="sep">›</span><span>Sede</span><span class="sep">›</span><span>Detalles</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span class="current">Ver mapa</span><span class="sep">›</span><span>Seleccionar sede</span><span class="sep">›</span><span>Consultar detalles</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('home')">←</button>
       <div class="top-nav-title">Sedes</div>
       <div style="width:36px;"></div>
     </div>
     <div class="screen-content">
-      <div class="step-title">Sedes disponibles</div>
-      <div class="step-sub">Seleccioná una para ver detalles</div>
-      <div class="map-placeholder"><span style="font-size:40px;">🗺️</span><span style="color:var(--gray); font-size:13px;">Mapa interactivo de sedes</span></div>
-      <div class="sede-card" onclick="selectSede('Palermo','Honduras 4523',true)">
-        <div class="sede-card-top"><div class="sede-name">FitLife Palermo</div><div class="sede-open open">Abierto</div></div>
+      <div class="step-title">Ver mapa con sedes disponibles</div>
+      <div class="step-sub">Seleccioná una sede para consultar detalles</div>
+
+      <div class="map-placeholder">
+        <span style="font-size:40px;">🗺️</span>
+        <span style="color:var(--gray); font-size:13px;">Mapa interactivo de sedes</span>
+      </div>
+
+      <div class="sede-card" onclick="selectSede('Palermo', 'Honduras 4523', true)">
+        <div class="sede-card-top">
+          <div class="sede-name">FitLife Palermo</div>
+          <div class="sede-open open">Abierto</div>
+        </div>
         <div class="sede-address">📍 Honduras 4523, CABA</div>
-        <div class="sede-info-row"><div class="sede-info-item">🕐 6:00 - 23:00</div><div class="sede-info-item">👥 Media</div><div class="sede-info-item">⭐ 4.8</div></div>
+        <div class="sede-info-row">
+          <div class="sede-info-item">🕐 6:00 - 23:00</div>
+          <div class="sede-info-item">👥 Media</div>
+          <div class="sede-info-item">⭐ 4.8</div>
+        </div>
       </div>
-      <div class="sede-card" onclick="selectSede('Belgrano','Av. Monroe 2101',true)">
-        <div class="sede-card-top"><div class="sede-name">FitLife Belgrano</div><div class="sede-open open">Abierto</div></div>
+
+      <div class="sede-card" onclick="selectSede('Belgrano', 'Av. Monroe 2101', true)">
+        <div class="sede-card-top">
+          <div class="sede-name">FitLife Belgrano</div>
+          <div class="sede-open open">Abierto</div>
+        </div>
         <div class="sede-address">📍 Av. Monroe 2101, CABA</div>
-        <div class="sede-info-row"><div class="sede-info-item">🕐 6:00 - 22:00</div><div class="sede-info-item">👥 Baja</div><div class="sede-info-item">⭐ 4.6</div></div>
+        <div class="sede-info-row">
+          <div class="sede-info-item">🕐 6:00 - 22:00</div>
+          <div class="sede-info-item">👥 Baja</div>
+          <div class="sede-info-item">⭐ 4.6</div>
+        </div>
       </div>
-      <div class="sede-card" onclick="selectSede('Microcentro','Av. Corrientes 1285',false)">
-        <div class="sede-card-top"><div class="sede-name">FitLife Microcentro</div><div class="sede-open closed">Cerrado</div></div>
+
+      <div class="sede-card" onclick="selectSede('Microcentro', 'Av. Corrientes 1285', false)">
+        <div class="sede-card-top">
+          <div class="sede-name">FitLife Microcentro</div>
+          <div class="sede-open closed">Cerrado</div>
+        </div>
         <div class="sede-address">📍 Av. Corrientes 1285, CABA</div>
-        <div class="sede-info-row"><div class="sede-info-item">🕐 7:00 - 21:00</div><div class="sede-info-item">👥 —</div><div class="sede-info-item">⭐ 4.5</div></div>
+        <div class="sede-info-row">
+          <div class="sede-info-item">🕐 7:00 - 21:00</div>
+          <div class="sede-info-item">👥 —</div>
+          <div class="sede-info-item">⭐ 4.5</div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- SEDE DETAIL -->
   <div class="screen" id="screen-sede-detail">
-    <div class="step-trail"><span>Sedes</span><span class="sep">›</span><span class="current">Detalles</span></div>
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Sede</span><span class="sep">›</span><span class="current">Consultar detalles</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('sedes')">←</button>
       <div class="top-nav-title" id="sd-name">FitLife Palermo</div>
@@ -1153,32 +1598,79 @@
     <div class="screen-content">
       <div class="step-title">Consultar detalles</div>
       <div class="step-sub" id="sd-address">📍 Honduras 4523, CABA</div>
-      <div class="detail-option" onclick="goto('sede-direccion')"><div class="detail-option-icon">📍</div><div class="detail-option-text"><div class="detail-option-title">Ver Dirección</div><div class="detail-option-sub">Cómo llegar — GPS</div></div><span style="color:var(--yellow);">→</span></div>
-      <div class="detail-option" onclick="goto('sede-horarios')"><div class="detail-option-icon">🕐</div><div class="detail-option-text"><div class="detail-option-title">Ver Horarios</div><div class="detail-option-sub">Cuando la sede está abierta</div></div><span style="color:var(--yellow);">→</span></div>
-      <div class="detail-option" onclick="goto('sede-otros')"><div class="detail-option-icon">ℹ️</div><div class="detail-option-text"><div class="detail-option-title">Otros Detalles</div><div class="detail-option-sub">Equipamiento, concurrencia</div></div><span style="color:var(--yellow);">→</span></div>
+
+      <div class="detail-option" onclick="goto('sede-direccion')">
+        <div class="detail-option-icon">📍</div>
+        <div class="detail-option-text">
+          <div class="detail-option-title">Ver Dirección</div>
+          <div class="detail-option-sub">Cómo llegar — Navegación GPS</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
+
+      <div class="detail-option" onclick="goto('sede-horarios')">
+        <div class="detail-option-icon">🕐</div>
+        <div class="detail-option-text">
+          <div class="detail-option-title">Ver Horarios</div>
+          <div class="detail-option-sub">Cuando la sede está abierta</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
+
+      <div class="detail-option" onclick="goto('sede-otros')">
+        <div class="detail-option-icon">ℹ️</div>
+        <div class="detail-option-text">
+          <div class="detail-option-title">Ver Otros Detalles</div>
+          <div class="detail-option-sub">Equipamiento, concurrencia, etc.</div>
+        </div>
+        <span style="color:var(--yellow);">→</span>
+      </div>
     </div>
   </div>
 
   <!-- SEDE DIRECCION -->
   <div class="screen" id="screen-sede-direccion">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Detalles</span><span class="sep">›</span><span>Dirección</span><span class="sep">›</span><span class="current">¿Ir a la sede?</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('sede-detail')">←</button>
-      <div class="top-nav-title">Dirección</div>
+      <div class="top-nav-title">Ver Dirección</div>
       <div style="width:36px;"></div>
     </div>
     <div class="screen-content">
-      <div class="map-placeholder" style="height:200px;"><span style="font-size:48px;">📍</span><span style="color:var(--gray); font-size:13px;" id="sd-dir-text">Honduras 4523, CABA</span></div>
-      <div class="info-box"><div class="info-box-title">Dirección completa</div><div class="info-box-content" id="sd-dir-full">Honduras 4523, Palermo, CABA</div></div>
-      <div class="info-box"><div class="info-box-title">Cómo llegar</div><div class="info-box-content">🚇 Subte D — Plaza Italia (5 min)<br>🚌 Colectivos 39, 152, 161<br>🚗 Estacionamiento gratuito</div></div>
-      <button class="btn-primary" onclick="goto('sede-ir-check')">¿Ir a la sede?</button>
+      <div class="step-title">Ver Dirección</div>
+
+      <div class="map-placeholder" style="height:200px;">
+        <span style="font-size:48px;">📍</span>
+        <span style="color:var(--gray); font-size:13px;" id="sd-dir-text">Honduras 4523, CABA</span>
+      </div>
+
+      <div class="info-box">
+        <div class="info-box-title">Dirección completa</div>
+        <div class="info-box-content" id="sd-dir-full">Honduras 4523, Palermo, CABA, Argentina</div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-box-title">Cómo llegar</div>
+        <div class="info-box-content">🚇 Subte D — Plaza Italia (5 min)<br>🚌 Colectivos 39, 152, 161<br>🚗 Estacionamiento gratuito</div>
+      </div>
+
+      <button class="btn-primary" onclick="goto('sede-ir-check')">¿Desea ir a la sede?</button>
     </div>
   </div>
 
   <!-- SEDE IR CHECK -->
   <div class="screen" id="screen-sede-ir-check">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Dirección</span><span class="sep">›</span><span class="current">¿Desea ir a la sede?</span></div>
     <div class="decision-screen">
-      <div class="decision-diamond"><div class="decision-diamond-inner"><div class="q-icon">🗺️</div><div class="q-text">¿Ir a<br>la sede?</div></div></div>
-      <div class="decision-context">Abrimos la navegación GPS</div>
+      <div class="decision-diamond">
+        <div class="decision-diamond-inner">
+          <div class="q-icon">🗺️</div>
+          <div class="q-text">¿Desea ir<br>a la sede?</div>
+        </div>
+      </div>
+      <div class="decision-context">Si querés ir ahora, abrimos la navegación GPS</div>
       <div class="decision-actions">
         <button class="btn-secondary" onclick="goto('home')" style="margin-top:0;">No</button>
         <button class="btn-primary" onclick="goto('sede-gps')">Sí, abrir GPS</button>
@@ -1188,323 +1680,83 @@
 
   <!-- SEDE GPS -->
   <div class="screen" id="screen-sede-gps">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div class="granted-screen">
       <div class="bio-icon-big" style="background:rgba(91,163,245,0.1); border-color:var(--blue);">🗺️</div>
       <div class="granted-title" style="color:var(--blue);">Abriendo GPS</div>
-      <div class="granted-sub">Iniciando navegación...</div>
-      <div class="spinner" style="margin:16px auto; width:40px; height:40px; border-width:3px;"></div>
+      <div class="granted-sub">Iniciando navegación a la sede seleccionada...</div>
+      <div class="spinner" style="margin: 16px auto; width:40px; height:40px; border-width:3px;"></div>
     </div>
   </div>
 
   <!-- SEDE HORARIOS -->
   <div class="screen" id="screen-sede-horarios">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Detalles</span><span class="sep">›</span><span class="current">Ver Horarios</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('sede-detail')">←</button>
-      <div class="top-nav-title">Horarios</div>
+      <div class="top-nav-title">Ver Horarios</div>
       <div style="width:36px;"></div>
     </div>
     <div class="screen-content">
-      <div class="step-title">Horarios de la sede</div>
-      <div class="info-box"><div class="info-box-title">Lunes a Viernes</div><div class="info-box-content">6:00 - 23:00</div></div>
-      <div class="info-box"><div class="info-box-title">Sábado</div><div class="info-box-content">8:00 - 20:00</div></div>
-      <div class="info-box"><div class="info-box-title">Domingo</div><div class="info-box-content">9:00 - 18:00</div></div>
-      <div class="info-box"><div class="info-box-title">Feriados</div><div class="info-box-content">9:00 - 14:00 (consultar en redes)</div></div>
+      <div class="step-title">Consultar horarios</div>
+      <div class="step-sub">Cuando la sede está abierta</div>
+
+      <div class="info-box">
+        <div class="info-box-title">Lunes a Viernes</div>
+        <div class="info-box-content">6:00 - 23:00</div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">Sábado</div>
+        <div class="info-box-content">8:00 - 20:00</div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">Domingo</div>
+        <div class="info-box-content">9:00 - 18:00</div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">Feriados</div>
+        <div class="info-box-content">9:00 - 14:00 (consultar en redes)</div>
+      </div>
+
       <button class="btn-secondary" onclick="goto('sede-detail')">Volver</button>
     </div>
   </div>
 
   <!-- SEDE OTROS -->
   <div class="screen" id="screen-sede-otros">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span>Detalles</span><span class="sep">›</span><span class="current">Otros Detalles</span></div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('sede-detail')">←</button>
       <div class="top-nav-title">Otros Detalles</div>
       <div style="width:36px;"></div>
     </div>
     <div class="screen-content">
-      <div class="info-box"><div class="info-box-title">Equipamiento</div><div class="info-box-content">🏋️ 40 máquinas de fuerza<br>🚴 20 bicicletas estáticas<br>🏃 15 cintas de correr<br>🧘 Sala de clases grupales<br>🏊 Pileta climatizada</div></div>
-      <div class="info-box"><div class="info-box-title">Concurrencia en vivo</div><div class="info-box-content">👥 Afluencia media — 62% de capacidad<br><span style="color:var(--green-accent); font-size:13px;">Buen momento para entrenar</span></div></div>
-      <div class="info-box"><div class="info-box-title">Servicios</div><div class="info-box-content">🚿 Vestuarios con duchas<br>🔒 Lockers personales<br>☕ Bar / Cafetería<br>📶 WiFi gratuito</div></div>
+      <div class="step-title">Consultar otros detalles</div>
+      <div class="step-sub">Equipamiento, nivel de concurrencia, etc.</div>
+
+      <div class="info-box">
+        <div class="info-box-title">Equipamiento disponible</div>
+        <div class="info-box-content">🏋️ 40 máquinas de fuerza<br>🚴 20 bicicletas estáticas<br>🏃 15 cintas de correr<br>🧘 Sala de clases grupales<br>🏊 Pileta climatizada</div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-box-title">Nivel de concurrencia (en vivo)</div>
+        <div class="info-box-content">👥 Afluencia media — 62% de capacidad<br><span style="color:var(--green-accent); font-size:13px;">Buen momento para entrenar</span></div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-box-title">Servicios</div>
+        <div class="info-box-content">🚿 Vestuarios con duchas<br>🔒 Lockers personales<br>☕ Bar / Cafetería<br>📶 WiFi gratuito<br>🅿️ Estacionamiento</div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-box-title">Calificación de usuarios</div>
+        <div class="info-box-content"><span class="text-yellow">⭐⭐⭐⭐⭐ 4.8 / 5</span> · 342 reseñas</div>
+      </div>
+
       <button class="btn-secondary" onclick="goto('sede-detail')">Volver</button>
-    </div>
-  </div>
-
-  <!-- ═══ REQ 08: CHAT — Lista de contactos ═══ -->
-  <div class="screen" id="screen-chat-contacts">
-    <div class="step-trail"><span class="current">Comunicación interna</span><span class="sep">›</span><span>Contacto</span><span class="sep">›</span><span>Chat</span></div>
-    <div class="top-nav">
-      <button class="back-btn" onclick="goto('home')">←</button>
-      <div class="top-nav-title">Mensajes</div>
-      <div style="width:36px;"></div>
-    </div>
-    <div class="screen-content">
-      <div class="step-title">Comunicación interna</div>
-      <div class="step-sub">Canal exclusivo con profes y nutricionistas. Sin WhatsApp ni cuentas personales.</div>
-      <div class="chat-contact" onclick="openChat('Prof. Martín G.','💪','Entrenador personal','¿Puedo saltear el día de piernas?')">
-        <div class="chat-avatar" style="background:rgba(232,255,71,0.1);">💪</div>
-        <div class="chat-contact-info"><div class="chat-contact-name">Prof. Martín G.</div><div class="chat-contact-role">Entrenador personal</div></div>
-        <div class="chat-unread">2</div>
-      </div>
-      <div class="chat-contact" onclick="openChat('Lic. Camila R.','🥗','Nutricionista','¿Podés revisar mis macros para bajar 1 kg?')">
-        <div class="chat-avatar" style="background:rgba(76,175,111,0.1);">🥗</div>
-        <div class="chat-contact-info"><div class="chat-contact-name">Lic. Camila R.</div><div class="chat-contact-role">Nutricionista</div></div>
-        <div class="chat-unread">1</div>
-      </div>
-      <div class="chat-contact" onclick="openChat('Prof. Lucas T.','🧘','Instructor yoga / cardio','¿La clase de mañana mejora movilidad?')">
-        <div class="chat-avatar" style="background:rgba(91,163,245,0.1);">🧘</div>
-        <div class="chat-contact-info"><div class="chat-contact-name">Prof. Lucas T.</div><div class="chat-contact-role">Instructor yoga / cardio</div></div>
-        <div style="font-size:11px; color:var(--gray);">Ayer</div>
-      </div>
-      <div class="chat-contact" onclick="openChat('Recepción Palermo','🏢','Sede Palermo','Horarios de feriado')">
-        <div class="chat-avatar" style="background:rgba(255,255,255,0.07);">🏢</div>
-        <div class="chat-contact-info"><div class="chat-contact-name">Recepción Palermo</div><div class="chat-contact-role">Sede Palermo</div></div>
-        <div style="font-size:11px; color:var(--gray);">Lun</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- REQ 08: CHAT — Conversación -->
-  <div class="screen" id="screen-chat-conv">
-    <div class="top-nav">
-      <button class="back-btn" onclick="goto('chat-contacts')">←</button>
-      <div class="top-nav-title" id="chat-conv-name">Prof. Martín G.</div>
-      <div style="font-size:22px;" id="chat-conv-avatar">💪</div>
-    </div>
-    <div class="screen-content" style="display:flex; flex-direction:column; padding-bottom:8px;">
-      <div class="chat-container" id="chat-messages">
-        <div>
-          <div class="chat-msg recv" id="chat-msg-recv">Hola, sí. Con buena técnica alcanzás mejor resultado y cuidás tus articulaciones.</div>
-          <div class="chat-meta" id="chat-meta-recv">Prof. Martín · 10:16</div>
-        </div>
-        <div style="align-self:flex-end; text-align:right;">
-          <div class="chat-msg sent" id="chat-msg-sent">¿Puedo saltear el día de piernas?</div>
-          <div class="chat-meta" id="chat-meta-sent">Vos · 10:14 ✓✓</div>
-        </div>
-        <div>
-          <div class="chat-msg recv" id="chat-msg-recv2">Perfecto, hacé 3 series de 10 con pausa corta y avisame si preferís cambiar el enfoque a fuerza o resistencia.</div>
-          <div class="chat-meta" id="chat-meta-recv2">Prof. Martín · 10:18</div>
-        </div>
-      </div>
-      <div style="margin-top:auto; padding-top:12px;">
-        <div class="chat-input-row">
-          <input class="chat-input" id="chat-input-field" placeholder="Escribí un mensaje..." type="text" onkeypress="if(event.key==='Enter') sendChatMsg()">
-          <button class="chat-send-btn" onclick="sendChatMsg()">➤</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- REQ 14: SUSTENTABILIDAD Paperless -->
-  <div class="screen" id="screen-sustentabilidad">
-    <div class="top-nav">
-      <button class="back-btn" onclick="goto('home')">←</button>
-      <div class="top-nav-title">Sustentabilidad</div>
-      <div style="width:36px;"></div>
-    </div>
-    <div class="screen-content">
-      <div class="paperless-badge">🌿 Operación 100% Paperless</div>
-      <div class="step-title">Sin papel, sin reprocesos</div>
-      <div class="step-sub">Toda la gestión es digital. Eliminamos formularios, recibos y listas en papel en las 10 sedes.</div>
-      <div class="eco-stat"><div class="eco-icon">📄</div><div><div class="eco-val">0</div><div class="eco-label">Formularios en papel usados este mes</div></div></div>
-      <div class="eco-stat"><div class="eco-icon">🖊️</div><div><div class="eco-val">100%</div><div class="eco-label">Contratos firmados digitalmente</div></div></div>
-      <div class="eco-stat"><div class="eco-icon">♻️</div><div><div class="eco-val">-94%</div><div class="eco-label">Reducción de residuos administrativos</div></div></div>
-      <div class="eco-stat"><div class="eco-icon">🌳</div><div><div class="eco-val">12</div><div class="eco-label">Árboles equivalentes ahorrados este año</div></div></div>
-      <div style="background:rgba(76,175,111,0.06); border:1px solid rgba(76,175,111,0.2); border-radius:var(--radius); padding:16px; margin-top:8px;">
-        <div style="font-size:12px; font-weight:700; color:var(--green-accent); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">¿Qué eliminamos?</div>
-        <div style="font-size:13px; color:var(--gray); line-height:1.9;">✓ Fichas de inscripción en papel<br>✓ Recibos físicos de pago<br>✓ Planillas manuales de asistencia<br>✓ Listas de reserva en pizarras<br>✓ Contratos físicos de membresía</div>
-      </div>
-      <button class="btn-secondary" onclick="goto('home')" style="margin-top:20px;">Volver al inicio</button>
-    </div>
-  </div>
-
-  <!-- REQ 15: LANZAMIENTO ESTRATÉGICO -->
-  <div class="screen" id="screen-lanzamiento">
-    <div class="top-nav">
-      <button class="back-btn" onclick="goto('home')">←</button>
-      <div class="top-nav-title">Plan de lanzamiento</div>
-      <div style="width:36px;"></div>
-    </div>
-    <div class="screen-content">
-
-      <!-- Header -->
-      <div class="step-title">Lanzamiento estratégico</div>
-      <div class="step-sub">4 etapas · 12 semanas · rollout progresivo</div>
-
-      <!-- Countdown -->
-      <div class="launch-countdown">
-        <div style="font-size:11px; color:var(--gray); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Lanzamiento oficial</div>
-        <div class="launch-date-big">1 septiembre 2026</div>
-        <div class="launch-progress-bar" style="margin-top:12px;"><div class="launch-progress-fill"></div></div>
-        <div style="font-size:11px; color:var(--gray); margin-top:6px;">62% completado</div>
-      </div>
-
-      <!-- Gantt mini visual -->
-      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius); padding:14px; margin-bottom:16px;">
-        <div style="font-size:11px; color:var(--gray); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;">Cronograma · S1–S12</div>
-        <div class="gantt-row">
-          <div class="gantt-label">E0</div>
-          <div class="gantt-track"><div class="gantt-bar gantt-active" style="left:0%; width:38%;"></div></div>
-        </div>
-        <div class="gantt-row">
-          <div class="gantt-label">E1</div>
-          <div class="gantt-track"><div class="gantt-bar" style="left:36%; width:33%;"></div></div>
-        </div>
-        <div class="gantt-row">
-          <div class="gantt-label">E2</div>
-          <div class="gantt-track"><div class="gantt-bar" style="left:67%; width:30%;"></div></div>
-        </div>
-        <div class="gantt-row">
-          <div class="gantt-label">E3</div>
-          <div class="gantt-track"><div class="gantt-bar gantt-sustain" style="left:82%; width:18%;"></div></div>
-        </div>
-        <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--gray); margin-top:6px; padding:0 2px;">
-          <span>S1</span><span>S3</span><span>S5</span><span>S7</span><span>S9</span><span>S11</span><span>S12</span>
-        </div>
-      </div>
-
-      <!-- Etapa 0 -->
-      <div class="launch-phase phase-active">
-        <div class="launch-phase-header">
-          <div class="launch-phase-name">Etapa 0 — Preparación interna</div>
-          <div class="launch-phase-weeks">S1 → S5</div>
-        </div>
-        <div class="launch-phase-badge">EN CURSO</div>
-        <div class="launch-activities">
-          <div class="launch-activity">
-            <span class="activity-dot active-dot"></span>
-            <div>
-              <div class="activity-title">Comunicación interna y onboarding</div>
-              <div class="activity-weeks">S1 – S3</div>
-            </div>
-          </div>
-          <div class="launch-activity">
-            <span class="activity-dot active-dot"></span>
-            <div>
-              <div class="activity-title">Definición de sucursal piloto y testers</div>
-              <div class="activity-weeks">S2 – S5</div>
-            </div>
-          </div>
-          <div class="launch-activity">
-            <span class="activity-dot active-dot"></span>
-            <div>
-              <div class="activity-title">Campaña de expectativa en puntos de venta</div>
-              <div class="activity-weeks">S3 – S5</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Etapa 1 -->
-      <div class="launch-phase">
-        <div class="launch-phase-header">
-          <div class="launch-phase-name">Etapa 1 — Prueba piloto cerrada</div>
-          <div class="launch-phase-weeks">S5 → S9</div>
-        </div>
-        <div class="launch-phase-desc" style="margin-bottom:10px;">Detectar errores, medir adopción temprana y ajustar la experiencia antes del lanzamiento masivo.</div>
-        <div class="launch-activities">
-          <div class="launch-activity">
-            <span class="activity-dot"></span>
-            <div>
-              <div class="activity-title">Testing en sucursal piloto con grupo cerrado</div>
-              <div class="activity-weeks">S5 – S8</div>
-            </div>
-          </div>
-          <div class="launch-activity">
-            <span class="activity-dot"></span>
-            <div>
-              <div class="activity-title">Recolección de feedback y ajustes</div>
-              <div class="activity-weeks">S6 – S9</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Etapa 2 -->
-      <div class="launch-phase">
-        <div class="launch-phase-header">
-          <div class="launch-phase-name">Etapa 2 — Lanzamiento oficial</div>
-          <div class="launch-phase-weeks">S9 → S12</div>
-        </div>
-        <div class="launch-activities">
-          <div class="launch-activity">
-            <span class="activity-dot"></span>
-            <div>
-              <div class="activity-title">Publicidad en redes y sedes</div>
-              <div class="activity-weeks">S9 – S11</div>
-            </div>
-          </div>
-          <div class="launch-activity">
-            <span class="activity-dot"></span>
-            <div>
-              <div class="activity-title">Implementación en sedes tester</div>
-              <div class="activity-weeks">S9 – S10</div>
-            </div>
-          </div>
-          <div class="launch-activity">
-            <span class="activity-dot"></span>
-            <div>
-              <div class="activity-title">Expansión a todas las sedes</div>
-              <div class="activity-weeks">S10 – S12</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Etapa 3 -->
-      <div class="launch-phase">
-        <div class="launch-phase-header">
-          <div class="launch-phase-name">Etapa 3 — Sostener el crecimiento</div>
-          <div class="launch-phase-weeks">S11 → S12+</div>
-        </div>
-        <div class="launch-activities">
-          <div class="launch-activity">
-            <span class="activity-dot"></span>
-            <div>
-              <div class="activity-title">Puntos Vida Activa por registrarse en la app</div>
-              <div class="activity-weeks">S11+</div>
-            </div>
-          </div>
-          <div class="launch-activity">
-            <span class="activity-dot"></span>
-            <div>
-              <div class="activity-title">Asistencia de empleados en sedes para registro</div>
-              <div class="activity-weeks">S11 – S12+</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-secondary" onclick="goto('home')" style="margin-top:8px;">Volver al inicio</button>
-    </div>
-  </div>
-
-  <!-- REQ 12: ESTANDARIZACIÓN — 10 sedes -->
-  <div class="screen" id="screen-estandarizacion">
-    <div class="top-nav">
-      <button class="back-btn" onclick="goto('home')">←</button>
-      <div class="top-nav-title">Red de Sedes</div>
-      <div style="width:36px;"></div>
-    </div>
-    <div class="screen-content">
-      <div class="std-badge">✓ Procesos estandarizados en las 10 sedes</div>
-      <div class="step-title">10 sedes, una sola experiencia</div>
-      <div class="step-sub">Procesos idénticos en toda la red para garantizar calidad y escalabilidad.</div>
-      <div class="sede-std-grid">
-        <div class="sede-std-chip" onclick="goto('sedes')"><div class="s-name">Palermo</div><div class="s-status">● Activa</div></div>
-        <div class="sede-std-chip" onclick="goto('sedes')"><div class="s-name">Belgrano</div><div class="s-status">● Activa</div></div>
-        <div class="sede-std-chip" onclick="goto('sedes')"><div class="s-name">Microcentro</div><div class="s-status" style="color:var(--red);">● Cerrada</div></div>
-        <div class="sede-std-chip" onclick="goto('sedes')"><div class="s-name">Caballito</div><div class="s-status">● Activa</div></div>
-        <div class="sede-std-chip" onclick="goto('sedes')"><div class="s-name">Villa Urquiza</div><div class="s-status">● Activa</div></div>
-        <div class="sede-std-chip" onclick="goto('sedes')"><div class="s-name">San Isidro</div><div class="s-status">● Activa</div></div>
-        <div class="sede-std-chip" onclick="goto('sedes')"><div class="s-name">Quilmes</div><div class="s-status">● Activa</div></div>
-        <div class="sede-std-chip" onclick="goto('sedes')"><div class="s-name">Lomas</div><div class="s-status">● Activa</div></div>
-        <div class="sede-std-chip" onclick="goto('sedes')"><div class="s-name">Morón</div><div class="s-status">● Activa</div></div>
-        <div class="sede-std-chip" onclick="goto('sedes')"><div class="s-name">Pilar</div><div class="s-status">● Activa</div></div>
-      </div>
-      <div style="background:rgba(255,255,255,0.05); border-radius:var(--radius); padding:16px; margin-bottom:12px; border:1px solid rgba(255,255,255,0.07);">
-        <div style="font-size:12px; font-weight:700; color:var(--gray); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;">Procesos estandarizados</div>
-        <div style="font-size:13px; color:var(--white); line-height:1.9;">✓ Alta de socios 100% digital<br>✓ Validación de membresía unificada<br>✓ QR biométrico en todos los accesos<br>✓ Reserva de clases centralizada<br>✓ Puntos Vida sincronizados entre sedes<br>✓ Comunicación interna en app</div>
-      </div>
-      <button class="btn-secondary" onclick="goto('home')" style="margin-top:8px;">Volver al inicio</button>
     </div>
   </div>
 
@@ -1514,7 +1766,10 @@
   function goto(screenId, param) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     const target = document.getElementById('screen-' + screenId);
-    if (target) { target.classList.add('active'); target.scrollTop = 0; }
+    if (target) {
+      target.classList.add('active');
+      target.scrollTop = 0;
+    }
 
     if (screenId === 'cuota-check') { setTimeout(checkCuota, 1500); }
     if (screenId === 'send-mail') { setTimeout(() => goto('confirm-mail'), 1800); }
@@ -1540,10 +1795,20 @@
   function checkCuota() {
     const tieneCuota = window._loginEmail !== 'vencida@test.com';
     if (tieneCuota) {
-      document.getElementById('cuota-result').innerHTML = `<div style="background:rgba(76,175,111,0.15); border:1px solid var(--green-accent); border-radius:var(--radius-sm); padding:14px; text-align:center;"><div style="color:var(--green-accent); font-weight:700; margin-bottom:4px;">✓ Cuota al día</div><div style="font-size:12px; color:var(--gray);">Redirigiendo...</div></div>`;
+      document.getElementById('cuota-result').innerHTML = `
+        <div style="background:rgba(76,175,111,0.15); border:1px solid var(--green-accent); border-radius:var(--radius-sm); padding:14px; text-align:center;">
+          <div style="color:var(--green-accent); font-weight:700; margin-bottom:4px;">✓ Cuota al día</div>
+          <div style="font-size:12px; color:var(--gray);">Acceso concedido — redirigiendo...</div>
+        </div>
+      `;
       setTimeout(() => goto('access-granted'), 1200);
     } else {
-      document.getElementById('cuota-result').innerHTML = `<div style="background:rgba(255,68,68,0.15); border:1px solid var(--red); border-radius:var(--radius-sm); padding:14px; text-align:center;"><div style="color:#FF6B6B; font-weight:700; margin-bottom:4px;">✗ Cuota vencida</div><div style="font-size:12px; color:var(--gray);">Continuando...</div></div>`;
+      document.getElementById('cuota-result').innerHTML = `
+        <div style="background:rgba(255,68,68,0.15); border:1px solid var(--red); border-radius:var(--radius-sm); padding:14px; text-align:center;">
+          <div style="color:#FF6B6B; font-weight:700; margin-bottom:4px;">✗ Cuota vencida</div>
+          <div style="font-size:12px; color:var(--gray);">Continuando...</div>
+        </div>
+      `;
       setTimeout(() => goto('renovar-check'), 1200);
     }
   }
@@ -1555,13 +1820,16 @@
     if (!name || !email || !pass) { showAlert('Completá todos los campos', 'error'); return; }
     document.getElementById('sent-mail-addr').textContent = email;
     document.getElementById('confirm-mail-addr').textContent = email;
-    const parts = name.trim().split(' ');
-    document.getElementById('home-username').innerHTML = parts[0] + (parts[1] ? ' <span>' + parts[1] + '</span>' : '');
+    const nameParts = name.trim().split(' ');
+    document.getElementById('home-username').innerHTML = nameParts[0] + (nameParts[1] ? ' <span>' + nameParts[1] + '</span>' : '');
     goto('send-mail');
   }
 
   function doSignTerms() {
-    if (!document.getElementById('terms-accept').checked) { showAlert('Debés aceptar los términos', 'error'); return; }
+    if (!document.getElementById('terms-accept').checked) {
+      showAlert('Debés aceptar los términos', 'error');
+      return;
+    }
     goto('plan');
   }
 
@@ -1574,7 +1842,8 @@
     document.getElementById('payment-plan-label').textContent = plan + ' — ' + price + '/mes';
     document.getElementById('home-plan-label').textContent = 'Plan ' + plan + ' activo';
     const btn = document.getElementById('btn-continue-plan');
-    btn.style.opacity = '1'; btn.style.pointerEvents = 'auto';
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
   }
 
   let _lastPaymentMethod = '';
@@ -1586,7 +1855,11 @@
 
   function checkPagoExitoso() {
     const exitoso = _lastPaymentMethod !== 'MercadoPago';
-    goto(exitoso ? 'access-granted' : 'reintentar-check');
+    if (exitoso) {
+      goto('access-granted');
+    } else {
+      goto('reintentar-check');
+    }
   }
 
   // NUTRICION
@@ -1597,7 +1870,11 @@
   }
 
   function setDietDetail(name) {
-    const data = { 'Mediterránea': { cal: '1.800 kcal', emoji: '🫒' }, 'Alta en proteínas': { cal: '2.200 kcal', emoji: '🥩' }, 'Plant-based': { cal: '1.600 kcal', emoji: '🌱' } };
+    const data = {
+      'Mediterránea': { cal: '1.800 kcal', emoji: '🫒' },
+      'Alta en proteínas': { cal: '2.200 kcal', emoji: '🥩' },
+      'Plant-based': { cal: '1.600 kcal', emoji: '🌱' }
+    };
     const d = data[name] || data['Mediterránea'];
     document.getElementById('diet-detail-title').textContent = name;
     document.getElementById('diet-detail-cal').textContent = d.cal;
@@ -1606,15 +1883,20 @@
 
   // PUNTOS
   let currentPoints = 2450;
-  let _canjeItem = null, _canjeCost = 0;
+  let _canjeItem = null;
+  let _canjeCost = 0;
 
   function selectBeneficio(name, cost) {
-    _canjeItem = name; _canjeCost = cost;
+    _canjeItem = name;
+    _canjeCost = cost;
     document.getElementById('canje-item-name').textContent = name;
     document.getElementById('canje-saldo').textContent = currentPoints.toLocaleString() + ' pts';
     document.getElementById('canje-cost').textContent = '- ' + cost.toLocaleString() + ' pts';
     document.getElementById('canje-restante').textContent = (currentPoints - cost).toLocaleString() + ' pts';
-    if (currentPoints < cost) { showAlert('No tenés suficientes puntos', 'error'); return; }
+    if (currentPoints < cost) {
+      showAlert('No tenés suficientes puntos', 'error');
+      return;
+    }
     goto('canje-check');
   }
 
@@ -1628,11 +1910,20 @@
     goto('canje-exitoso');
   }
 
-  function cancelarCanje() { showAlert('Canje cancelado', 'error'); goto('puntos-beneficios'); }
+  function cancelarCanje() {
+    showAlert('Canje cancelado', 'error');
+    goto('puntos-beneficios');
+  }
 
   // CLASES
-  function filterTipo(btn, tipo) { btn.parentElement.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active')); btn.classList.add('active'); }
-  function filterCat(btn) { document.querySelectorAll('.filter-row .filter-chip').forEach(c => c.classList.remove('active')); btn.classList.add('active'); }
+  function filterTipo(btn, tipo) {
+    btn.parentElement.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  function filterCat(btn) {
+    document.querySelectorAll('.filter-row .filter-chip').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+  }
 
   function setClassDetail(param) {
     const [name, cat, tipo, dur, nivel, emoji] = param.split('|');
@@ -1656,27 +1947,58 @@
     document.getElementById('conf-horario').textContent = _selectedHorario;
     document.getElementById('rc-horario').textContent = _selectedHorario;
     const btn = document.getElementById('btn-ir-inscripcion');
-    btn.style.opacity = '1'; btn.style.pointerEvents = 'auto';
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
   }
 
-  function confirmarReserva() { goto('reserva-confirmada'); }
-  function filterRoutine(el, key) { document.querySelectorAll('#screen-routines .objective-card').forEach(c => c.classList.remove('selected')); el.classList.add('selected'); }
+  function confirmarReserva() {
+    goto('reserva-confirmada');
+  }
 
-  // QR
+  // RUTINAS
+  function filterRoutine(el, key) {
+    document.querySelectorAll('#screen-routines .objective-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  // QR - ESCANEO FACIAL
   let qrTimer = null;
+  let _bioSuccess = false;
+  let _scanLineEl = null;
+
   function startBio() {
     document.getElementById('bio-state-init').style.display = 'none';
     document.getElementById('bio-state-checking').style.display = 'block';
-    document.getElementById('bio-icon').textContent = '📡';
-    setTimeout(() => goto('qr-x-check'), 2000);
+    document.getElementById('face-emoji').textContent = '📷';
+
+    // agregar línea de escaneo
+    const frame = document.getElementById('face-scan-frame');
+    if (!_scanLineEl) {
+      _scanLineEl = document.createElement('div');
+      _scanLineEl.className = 'face-scan-line';
+      frame.appendChild(_scanLineEl);
+    }
+
+    setTimeout(() => {
+      goto('qr-x-check');
+    }, 2200);
   }
 
   function checkBioResult() {
-    const success = Math.random() > 0.3;
-    goto(success ? 'qr-show' : 'qr-reintentar');
+    _bioSuccess = Math.random() > 0.3;
+    if (_bioSuccess) {
+      goto('qr-show');
+    } else {
+      goto('qr-reintentar');
+    }
+    // Reset
     document.getElementById('bio-state-init').style.display = 'block';
     document.getElementById('bio-state-checking').style.display = 'none';
-    document.getElementById('bio-icon').textContent = '👆';
+    document.getElementById('face-emoji').textContent = '😊';
+    if (_scanLineEl && _scanLineEl.parentNode) {
+      _scanLineEl.parentNode.removeChild(_scanLineEl);
+      _scanLineEl = null;
+    }
   }
 
   function startQRTimer() {
@@ -1685,71 +2007,26 @@
     document.getElementById('qr-countdown').textContent = '5:00';
     qrTimer = setInterval(() => {
       seconds--;
-      const m = Math.floor(seconds / 60), s = seconds % 60;
+      const m = Math.floor(seconds / 60);
+      const s = seconds % 60;
       document.getElementById('qr-countdown').textContent = m + ':' + (s < 10 ? '0' : '') + s;
-      if (seconds <= 0) { clearInterval(qrTimer); showAlert('QR expirado — verificá de nuevo', 'error'); goto('qr-bio'); }
+      if (seconds <= 0) {
+        clearInterval(qrTimer);
+        showAlert('QR expirado — verificá de nuevo', 'error');
+        goto('qr-bio');
+      }
     }, 1000);
   }
 
   // SEDES
+  let _selectedSede = null;
   function selectSede(name, address, isOpen) {
+    _selectedSede = { name, address, isOpen };
     document.getElementById('sd-name').textContent = 'FitLife ' + name;
     document.getElementById('sd-address').textContent = '📍 ' + address + ', CABA';
     document.getElementById('sd-dir-text').textContent = address + ', CABA';
     document.getElementById('sd-dir-full').textContent = address + ', ' + name + ', CABA, Argentina';
     goto('sede-detail');
-  }
-
-  // ═══ REQ 08: CHAT ═══
-  function openChat(name, avatar, role, lastMsg) {
-    document.getElementById('chat-conv-name').textContent = name;
-    document.getElementById('chat-conv-avatar').textContent = avatar;
-    document.getElementById('chat-msg-sent').textContent = lastMsg;
-    document.getElementById('chat-meta-sent').textContent = 'Vos · 10:14 ✓✓';
-    document.getElementById('chat-input-field').value = '';
-
-    let reply1 = 'Hola, sí. Está todo listo para tu clase de mañana, trae tu botella de agua.';
-    let reply2 = 'Te paso 3 variaciones y una sugerencia para que el entrenamiento siga funcionando.';
-
-    if (name.includes('Martín')) {
-      reply1 = 'Hola, está todo listo para tu sesión de hoy. Trae ropa cómoda y una botella de agua.';
-      reply2 = 'Mañana podemos probar otra variante para no sobrecargar las piernas.';
-    } else if (name.includes('Camila')) {
-      reply1 = 'Perfecto, antes de tocar macros asegurate de mantener las porciones controladas.';
-      reply2 = 'Además, hidratate bien y evitá snacks altos en azúcar después de las 20:00.';
-    } else if (name.includes('Lucas')) {
-      reply1 = 'Sí, la clase de mañana está confirmada a las 19:00 en sala 2.';
-      reply2 = 'Llevá tu mat y enfocate en la respiración, eso te ayuda más que la postura exacta.';
-    } else if (name.includes('Recepción')) {
-      reply1 = 'El horario de feriado está confirmado y la recepción abre a las 8:00.';
-      reply2 = 'Podés ingresar normalmente, solo presentá tu carnet y sigue las indicaciones al entrar.';
-    }
-
-    document.getElementById('chat-msg-recv').textContent = reply1;
-    document.getElementById('chat-meta-recv').textContent = name.split(' ')[0] + ' · 10:16';
-    document.getElementById('chat-msg-recv2').textContent = reply2;
-    document.getElementById('chat-meta-recv2').textContent = name.split(' ')[0] + ' · 10:18';
-
-    // reset messages
-    const container = document.getElementById('chat-messages');
-    const extraMsgs = container.querySelectorAll('.dynamic-msg');
-    extraMsgs.forEach(m => m.remove());
-    goto('chat-conv');
-  }
-
-  function sendChatMsg() {
-    const input = document.getElementById('chat-input-field');
-    const msg = input.value.trim();
-    if (!msg) return;
-    const container = document.getElementById('chat-messages');
-    const div = document.createElement('div');
-    div.className = 'dynamic-msg';
-    div.style.alignSelf = 'flex-end';
-    div.style.textAlign = 'right';
-    div.innerHTML = `<div class="chat-msg sent">${msg}</div><div class="chat-meta">Vos · ahora ✓</div>`;
-    container.appendChild(div);
-    input.value = '';
-    container.scrollTop = container.scrollHeight;
   }
 
   // ALERT
