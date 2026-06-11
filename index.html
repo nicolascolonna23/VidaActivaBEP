@@ -516,7 +516,7 @@
   <div class="screen" id="screen-register-mail">
     <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
     <div class="step-trail">
-      <span>Registro</span><span class="sep">›</span><span class="current">Mail y contraseña</span><span class="sep">›</span><span>Confirmar mail</span><span class="sep">›</span><span>T&C</span>
+      <span>Registro</span><span class="sep">›</span><span class="current">Mail y contraseña</span><span class="sep">›</span><span>Confirmar mail</span><span class="sep">›</span><span>T&C</span><span class="sep">›</span><span>Plan</span><span class="sep">›</span><span>Pago</span>
     </div>
     <div class="top-nav">
       <button class="back-btn" onclick="goto('auth-choice')">←</button>
@@ -632,7 +632,7 @@
       <span>Suscripción</span><span class="sep">›</span><span class="current">Elegir plan</span><span class="sep">›</span><span>Pago</span>
     </div>
     <div class="top-nav">
-      <button class="back-btn" onclick="goto('perfil')">←</button>
+      <button class="back-btn" onclick="_registering ? goto('terms') : goto('perfil')">←</button>
       <div class="top-nav-title">Elegir plan</div>
       <div style="width:36px;"></div>
     </div>
@@ -693,7 +693,7 @@
         Confirmá que querés proceder al pago del plan <span class="text-green" id="pagar-plan-label">Premium</span>
       </div>
       <div class="decision-actions">
-        <button class="btn-danger" onclick="goto('home')" style="margin-top:0;">No</button>
+        <button class="btn-danger" onclick="_registering ? goto('access-denied') : goto('home')" style="margin-top:0;">No</button>
         <button class="btn-primary" onclick="goto('payment-method')">Sí, pagar</button>
       </div>
     </div>
@@ -2011,6 +2011,7 @@
     if (screenId === 'processing') { setTimeout(() => goto('pago-exitoso-check'), 2000); }
     if (screenId === 'pago-exitoso-check') { setTimeout(checkPagoExitoso, 1800); }
     if (screenId === 'access-granted') { setTimeout(() => goto('home'), 1800); }
+    if (screenId === 'home') { _registering = false; }
     if (screenId === 'qr-x-check') { setTimeout(checkBioResult, 1500); }
     if (screenId === 'qr-show') { startQRTimer(); }
     if (screenId === 'sede-gps') { setTimeout(() => { showAlert('GPS iniciado 🗺️', 'success'); goto('home'); }, 1800); }
@@ -2061,15 +2062,14 @@
     goto('send-mail');
   }
 
+  let _registering = false;
   function doSignTerms() {
     if (!document.getElementById('terms-accept').checked) {
       showAlert('Debés aceptar los términos', 'error');
       return;
     }
-    // Después de T&C → entrar directo al home (plan no obligatorio)
-    document.getElementById('perfil-plan-badge').textContent = '🆓 Sin suscripción';
-    document.getElementById('home-plan-label').textContent = 'Sin suscripción activa';
-    goto('access-granted');
+    _registering = true;
+    goto('plan');
   }
 
   let _selectedPlan = null;
