@@ -394,6 +394,37 @@
   .card-footer-value { font-size: 13px; color: white; font-weight: 600; margin-top: 2px; }
   .card-brand { position: absolute; top: 20px; right: 20px; font-size: 22px; font-weight: 700; color: var(--yellow); font-family: 'Space Grotesk', sans-serif; z-index: 1; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* CHATS */
+  .chat-list-item { background: var(--bg-card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow-sm); }
+  .chat-list-item:hover { border-color: var(--green); transform: translateY(-1px); }
+  .chat-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--yellow); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; position: relative; }
+  .chat-avatar.online::after { content: ''; position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: var(--green-light); border: 2px solid var(--bg-card); border-radius: 50%; }
+  .chat-info { flex: 1; min-width: 0; }
+  .chat-row1 { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .chat-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .chat-time { font-size: 11px; color: var(--text-muted); }
+  .chat-row2 { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .chat-preview { font-size: 13px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
+  .chat-badge { background: var(--green); color: var(--yellow); font-size: 11px; font-weight: 700; min-width: 20px; height: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 0 6px; }
+  .chat-role { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; background: var(--yellow); color: var(--green); margin-bottom: 2px; }
+
+  /* CHAT DETAIL */
+  .chat-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--bg-soft); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .chat-header .chat-avatar { width: 40px; height: 40px; font-size: 20px; }
+  .chat-header-info { flex: 1; }
+  .chat-header-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .chat-header-status { font-size: 11px; color: var(--green); }
+  .chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; background: var(--bg); }
+  .chat-msg { max-width: 75%; padding: 10px 14px; border-radius: 16px; font-size: 14px; line-height: 1.4; }
+  .chat-msg.received { background: var(--bg-card); color: var(--text); border: 1px solid var(--border); border-bottom-left-radius: 4px; align-self: flex-start; }
+  .chat-msg.sent { background: var(--green); color: white; border-bottom-right-radius: 4px; align-self: flex-end; }
+  .chat-msg-time { font-size: 10px; opacity: 0.6; margin-top: 4px; }
+  .chat-input-row { display: flex; gap: 8px; padding: 12px 16px; background: var(--bg-soft); border-top: 1px solid var(--border); flex-shrink: 0; }
+  .chat-input { flex: 1; padding: 10px 14px; background: var(--bg-card); border: 1.5px solid var(--border); border-radius: 20px; font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none; }
+  .chat-input:focus { border-color: var(--green); }
+  .chat-send-btn { width: 40px; height: 40px; background: var(--green); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+  .chat-send-btn:hover { background: var(--green-mid); }
 </style>
 </head>
 <body>
@@ -1004,10 +1035,10 @@
         <div class="menu-card-sub">Personalizadas</div>
         <div class="menu-card-arrow">→</div>
       </div>
-      <div class="menu-card" onclick="goto('qr-bio')">
-        <div class="menu-card-icon">📱</div>
-        <div class="menu-card-title">QR de acceso</div>
-        <div class="menu-card-sub">Escaneo facial</div>
+      <div class="menu-card" onclick="goto('chats')">
+        <div class="menu-card-icon">💬</div>
+        <div class="menu-card-title">Conversaciones</div>
+        <div class="menu-card-sub">Entrenadores y dietistas</div>
         <div class="menu-card-arrow">→</div>
       </div>
       <div class="menu-card" onclick="goto('perfil')">
@@ -1327,35 +1358,31 @@
         <div class="benefit-cost">5.000 pts</div>
       </div>
 
-      <div style="font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:700; color:var(--green); letter-spacing:0.5px; text-transform:uppercase; margin: 20px 0 10px; display:flex; align-items:center; gap:8px;">
-        <span style="font-size:16px;">🌱</span> Eco-friendly
-      </div>
-
       <div class="benefit-card" onclick="selectBeneficio('👟 Zapatillas recicladas', 4500)">
         <div class="benefit-icon-wrap">👟</div>
         <div class="benefit-info">
           <div class="benefit-name">Zapatillas recicladas</div>
-          <div class="benefit-desc">Hechas con plástico oceánico reciclado</div>
+          <div class="benefit-desc">Plástico oceánico reciclado</div>
         </div>
         <div class="benefit-cost">4.500 pts</div>
       </div>
 
-      <div class="benefit-card" onclick="selectBeneficio('🌳 Plantar un árbol a tu nombre', 600)">
-        <div class="benefit-icon-wrap">🌳</div>
-        <div class="benefit-info">
-          <div class="benefit-name">Plantar un árbol</div>
-          <div class="benefit-desc">A tu nombre — reforestación local</div>
-        </div>
-        <div class="benefit-cost">600 pts</div>
-      </div>
-
-      <div class="benefit-card" onclick="selectBeneficio('🎒 Mochila de plástico reciclado', 2200)">
+      <div class="benefit-card" onclick="selectBeneficio('🎒 Mochila eco', 2200)">
         <div class="benefit-icon-wrap">🎒</div>
         <div class="benefit-info">
           <div class="benefit-name">Mochila eco</div>
           <div class="benefit-desc">Tela reciclada — diseño FitLife</div>
         </div>
         <div class="benefit-cost">2.200 pts</div>
+      </div>
+
+      <div class="benefit-card" onclick="selectBeneficio('👕 Remera algodón orgánico', 1000)">
+        <div class="benefit-icon-wrap">👕</div>
+        <div class="benefit-info">
+          <div class="benefit-name">Remera algodón orgánico</div>
+          <div class="benefit-desc">Cultivo sin químicos · talle a elección</div>
+        </div>
+        <div class="benefit-cost">1.000 pts</div>
       </div>
     </div>
   </div>
@@ -2026,6 +2053,121 @@
     </div>
   </div>
 
+  <!-- CHATS LISTA -->
+  <div class="screen" id="screen-chats">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="step-trail"><span class="current">Conversaciones</span><span class="sep">›</span><span>Chat</span></div>
+    <div class="top-nav">
+      <button class="back-btn" onclick="goto('home')">←</button>
+      <div class="top-nav-title">Conversaciones</div>
+      <div style="width:36px;"></div>
+    </div>
+    <div class="screen-content">
+      <div class="step-title">Mis chats</div>
+      <div class="step-sub">Entrenadores y dietistas asignados a tu plan</div>
+
+      <div class="chat-list-item" onclick="openChat('Lucas Pérez', 'Entrenador personal', '💪', true)">
+        <div class="chat-avatar online">💪</div>
+        <div class="chat-info">
+          <div class="chat-role">Entrenador personal</div>
+          <div class="chat-row1">
+            <div class="chat-name">Lucas Pérez</div>
+            <div class="chat-time">10:42</div>
+          </div>
+          <div class="chat-row2">
+            <div class="chat-preview">Dale, mañana arrancamos con tren superior 💪</div>
+            <div class="chat-badge">2</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-list-item" onclick="openChat('Sofía Méndez', 'Nutricionista', '🥗', true)">
+        <div class="chat-avatar online">🥗</div>
+        <div class="chat-info">
+          <div class="chat-role">Nutricionista</div>
+          <div class="chat-row1">
+            <div class="chat-name">Sofía Méndez</div>
+            <div class="chat-time">09:15</div>
+          </div>
+          <div class="chat-row2">
+            <div class="chat-preview">Te paso el plan de comidas actualizado</div>
+            <div class="chat-badge">1</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-list-item" onclick="openChat('Martín Ríos', 'Entrenador HIIT', '🔥', false)">
+        <div class="chat-avatar">🔥</div>
+        <div class="chat-info">
+          <div class="chat-role">Entrenador HIIT</div>
+          <div class="chat-row1">
+            <div class="chat-name">Martín Ríos</div>
+            <div class="chat-time">Ayer</div>
+          </div>
+          <div class="chat-row2">
+            <div class="chat-preview">Buen progreso esta semana 👏</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-list-item" onclick="openChat('Carla Bustos', 'Coach de Yoga', '🧘', false)">
+        <div class="chat-avatar">🧘</div>
+        <div class="chat-info">
+          <div class="chat-role">Coach de Yoga</div>
+          <div class="chat-row1">
+            <div class="chat-name">Carla Bustos</div>
+            <div class="chat-time">Lun</div>
+          </div>
+          <div class="chat-row2">
+            <div class="chat-preview">Recordá venir 10 min antes a la clase</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-list-item" onclick="openChat('Laura García', 'Dietista deportiva', '🍎', false)">
+        <div class="chat-avatar">🍎</div>
+        <div class="chat-info">
+          <div class="chat-role">Dietista deportiva</div>
+          <div class="chat-row1">
+            <div class="chat-name">Laura García</div>
+            <div class="chat-time">02 Jun</div>
+          </div>
+          <div class="chat-row2">
+            <div class="chat-preview">¿Cómo te fue con la suplementación?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAT DETALLE -->
+  <div class="screen" id="screen-chat-detail" style="padding:0;">
+    <div class="status-bar"><span>9:41</span><div class="status-icons">▲ ● ▮▮▮</div></div>
+    <div class="chat-header">
+      <button class="back-btn" onclick="goto('chats')">←</button>
+      <div class="chat-avatar online" id="chat-d-avatar" style="width:40px; height:40px; font-size:20px;">💪</div>
+      <div class="chat-header-info">
+        <div class="chat-header-name" id="chat-d-name">Lucas Pérez</div>
+        <div class="chat-header-status" id="chat-d-status">● En línea</div>
+      </div>
+      <button class="back-btn" onclick="showAlert('Llamando...', 'success')">📞</button>
+    </div>
+
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-msg received">¡Hola! ¿Cómo estás? 👋<div class="chat-msg-time">10:30</div></div>
+      <div class="chat-msg sent">Hola, todo bien. Listo para arrancar la semana<div class="chat-msg-time">10:32</div></div>
+      <div class="chat-msg received">Perfecto. ¿Cómo seguiste con las molestias en el hombro?<div class="chat-msg-time">10:35</div></div>
+      <div class="chat-msg sent">Mucho mejor, ya casi no me molesta<div class="chat-msg-time">10:38</div></div>
+      <div class="chat-msg received">Genial 💪 Mañana arrancamos con tren superior entonces<div class="chat-msg-time">10:42</div></div>
+      <div class="chat-msg received">Te paso la rutina apenas la termine de armar<div class="chat-msg-time">10:42</div></div>
+    </div>
+
+    <div class="chat-input-row">
+      <input class="chat-input" type="text" id="chat-input" placeholder="Escribir mensaje..." onkeypress="if(event.key==='Enter') sendChatMsg()">
+      <button class="chat-send-btn" onclick="sendChatMsg()">➤</button>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -2303,6 +2445,41 @@
         goto('qr-bio');
       }
     }, 1000);
+  }
+
+  function openChat(name, role, emoji, online) {
+    document.getElementById('chat-d-name').textContent = name;
+    document.getElementById('chat-d-avatar').textContent = emoji;
+    document.getElementById('chat-d-status').textContent = online ? '● En línea' : 'Visto recientemente';
+    document.getElementById('chat-d-avatar').classList.toggle('online', online);
+    goto('chat-detail');
+    setTimeout(() => {
+      const msgs = document.getElementById('chat-messages');
+      msgs.scrollTop = msgs.scrollHeight;
+    }, 50);
+  }
+
+  function sendChatMsg() {
+    const input = document.getElementById('chat-input');
+    const txt = input.value.trim();
+    if (!txt) return;
+    const msgs = document.getElementById('chat-messages');
+    const now = new Date();
+    const hh = now.getHours().toString().padStart(2,'0');
+    const mm = now.getMinutes().toString().padStart(2,'0');
+    const div = document.createElement('div');
+    div.className = 'chat-msg sent';
+    div.innerHTML = txt.replace(/</g,'&lt;') + '<div class="chat-msg-time">' + hh + ':' + mm + '</div>';
+    msgs.appendChild(div);
+    input.value = '';
+    msgs.scrollTop = msgs.scrollHeight;
+    setTimeout(() => {
+      const r = document.createElement('div');
+      r.className = 'chat-msg received';
+      r.innerHTML = 'Mensaje recibido ✓<div class="chat-msg-time">' + hh + ':' + mm + '</div>';
+      msgs.appendChild(r);
+      msgs.scrollTop = msgs.scrollHeight;
+    }, 1200);
   }
 
   function selectSede(name, address, isOpen) {
